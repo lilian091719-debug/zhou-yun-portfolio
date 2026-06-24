@@ -426,6 +426,49 @@
       letter-spacing: 0.15em;
     }
 
+    /* ── PHOTO ALBUM ── */
+    .photo-album {
+      grid-column: 1 / -1;
+      padding: 28px 32px 32px;
+      background: var(--beige-card);
+      border: 1px solid var(--border);
+    }
+    .photo-album.hidden { display: none; }
+    .album-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .album-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .album-meta {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+    }
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 6px;
+    }
+    .album-thumb {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      cursor: pointer;
+      display: block;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .album-thumb:hover { opacity: 0.82; transform: scale(1.02); }
+
     /* ── RWD ── */
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
@@ -570,26 +613,45 @@
         </div>
       </div>
 
-      <div class="portfolio-card gallery-card" data-cat="travel"
-           data-gallery="jeju"
-           data-images='["images/jeju/lia02822.jpg","images/jeju/lia02826.jpg","images/jeju/lia02832.jpg","images/jeju/lia02861.jpg","images/jeju/lia03438.jpg","images/jeju/lia03462.jpg","images/jeju/lia03466.jpg","images/jeju/lia03467.jpg","images/jeju/lia03479.jpg","images/jeju/lia03494.jpg","images/jeju/lia03632.jpg","images/jeju/lia03638.jpg","images/jeju/yun01668.jpg","images/jeju/yun01741.jpg","images/jeju/yun08369.jpg","images/jeju/yun08447.jpg","images/jeju/yun08504.jpg"]'>
-        <div class="card-img"><img src="images/jeju/lia02822.jpg" alt="濟州島旅遊影像"></div>
-        <div class="card-info">
-          <p class="card-title">濟州島・旅遊影像</p>
-          <p class="card-cat">寵物戶外寫真 &nbsp;·&nbsp; 17 張</p>
+      <div class="photo-album" data-cat="travel">
+        <div class="album-header">
+          <span class="album-title">濟州島・旅遊影像</span>
+          <span class="album-meta">寵物戶外寫真 · 17 張</span>
         </div>
-        <div class="card-gallery-hint">點擊看全部</div>
+        <div class="album-grid" data-images='["images/jeju/lia02822.jpg","images/jeju/lia02826.jpg","images/jeju/lia02832.jpg","images/jeju/lia02861.jpg","images/jeju/lia03438.jpg","images/jeju/lia03462.jpg","images/jeju/lia03466.jpg","images/jeju/lia03467.jpg","images/jeju/lia03479.jpg","images/jeju/lia03494.jpg","images/jeju/lia03632.jpg","images/jeju/lia03638.jpg","images/jeju/yun01668.jpg","images/jeju/yun01741.jpg","images/jeju/yun08369.jpg","images/jeju/yun08447.jpg","images/jeju/yun08504.jpg"]'>
+          <img src="images/jeju/lia02822.jpg" alt="" class="album-thumb" data-index="0">
+          <img src="images/jeju/lia02826.jpg" alt="" class="album-thumb" data-index="1">
+          <img src="images/jeju/lia02832.jpg" alt="" class="album-thumb" data-index="2">
+          <img src="images/jeju/lia02861.jpg" alt="" class="album-thumb" data-index="3">
+          <img src="images/jeju/lia03438.jpg" alt="" class="album-thumb" data-index="4">
+          <img src="images/jeju/lia03462.jpg" alt="" class="album-thumb" data-index="5">
+          <img src="images/jeju/lia03466.jpg" alt="" class="album-thumb" data-index="6">
+          <img src="images/jeju/lia03467.jpg" alt="" class="album-thumb" data-index="7">
+          <img src="images/jeju/lia03479.jpg" alt="" class="album-thumb" data-index="8">
+          <img src="images/jeju/lia03494.jpg" alt="" class="album-thumb" data-index="9">
+          <img src="images/jeju/lia03632.jpg" alt="" class="album-thumb" data-index="10">
+          <img src="images/jeju/lia03638.jpg" alt="" class="album-thumb" data-index="11">
+          <img src="images/jeju/yun01668.jpg" alt="" class="album-thumb" data-index="12">
+          <img src="images/jeju/yun01741.jpg" alt="" class="album-thumb" data-index="13">
+          <img src="images/jeju/yun08369.jpg" alt="" class="album-thumb" data-index="14">
+          <img src="images/jeju/yun08447.jpg" alt="" class="album-thumb" data-index="15">
+          <img src="images/jeju/yun08504.jpg" alt="" class="album-thumb" data-index="16">
+        </div>
       </div>
 
-      <div class="portfolio-card gallery-card" data-cat="baby"
-           data-gallery="doudou"
-           data-images='["images/doudou/YUN05946.jpg","images/doudou/YUN06034.jpg","images/doudou/YUN06042.jpg","images/doudou/YUN06049.jpg","images/doudou/YUN06121.jpg","images/doudou/YUN06231.jpg"]'>
-        <div class="card-img"><img src="images/doudou/YUN05946.jpg" alt="豆豆抓周紀錄"></div>
-        <div class="card-info">
-          <p class="card-title">豆豆抓周紀錄</p>
-          <p class="card-cat">抓周紀錄 &nbsp;·&nbsp; 6 張</p>
+      <div class="photo-album" data-cat="baby">
+        <div class="album-header">
+          <span class="album-title">豆豆抓周紀錄</span>
+          <span class="album-meta">抓周紀錄 · 6 張</span>
         </div>
-        <div class="card-gallery-hint">點擊看全部</div>
+        <div class="album-grid" data-images='["images/doudou/YUN05946.jpg","images/doudou/YUN06034.jpg","images/doudou/YUN06042.jpg","images/doudou/YUN06049.jpg","images/doudou/YUN06121.jpg","images/doudou/YUN06231.jpg"]'>
+          <img src="images/doudou/YUN05946.jpg" alt="" class="album-thumb" data-index="0">
+          <img src="images/doudou/YUN06034.jpg" alt="" class="album-thumb" data-index="1">
+          <img src="images/doudou/YUN06042.jpg" alt="" class="album-thumb" data-index="2">
+          <img src="images/doudou/YUN06049.jpg" alt="" class="album-thumb" data-index="3">
+          <img src="images/doudou/YUN06121.jpg" alt="" class="album-thumb" data-index="4">
+          <img src="images/doudou/YUN06231.jpg" alt="" class="album-thumb" data-index="5">
+        </div>
       </div>
     </div>
   </section>
@@ -660,6 +722,7 @@
     // Portfolio filter
     const filterBtns = document.querySelectorAll('.filter-btn')
     const cards = document.querySelectorAll('.portfolio-card')
+    const albums = document.querySelectorAll('.photo-album')
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -669,6 +732,10 @@
         cards.forEach(card => {
           const match = filter === 'all' || card.dataset.cat === filter
           card.classList.toggle('hidden', !match)
+        })
+        albums.forEach(album => {
+          const match = filter === 'all' || album.dataset.cat === filter
+          album.classList.toggle('hidden', !match)
         })
       })
     })
@@ -696,10 +763,12 @@
       lbCounter.textContent = `${lbIndex + 1} / ${lbImages.length}`
     }
 
-    document.querySelectorAll('.gallery-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const images = JSON.parse(card.dataset.images)
-        lbOpen(images, 0)
+    document.querySelectorAll('.album-grid').forEach(grid => {
+      const images = JSON.parse(grid.dataset.images)
+      grid.querySelectorAll('.album-thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          lbOpen(images, parseInt(thumb.dataset.index))
+        })
       })
     })
 
