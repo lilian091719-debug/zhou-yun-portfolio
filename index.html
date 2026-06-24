@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周筠 YUN — 形象攝影 × 燈光設計</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --beige:      #F5F0E8;
+      --beige-dark: #EDE8DB;
+      --beige-card: #E8E2D5;
+      --gold:       #C9A84C;
+      --gold-light: #D4B96A;
+      --text:       #2C2416;
+      --text-muted: #7A6B52;
+      --border:     rgba(201,168,76,0.35);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--beige);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 60px;
+      background: transparent;
+      transition: background 0.4s, border-bottom 0.4s;
+    }
+    nav.scrolled {
+      background: var(--beige);
+      border-bottom: 1px solid var(--gold);
+    }
+    .nav-logo {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--gold);
+      margin-left: 4px;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 3px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+    }
+    .hero-tag {
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+    .hero-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(56px, 8vw, 96px);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+    }
+    .hero-name-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 300;
+      color: var(--gold);
+      display: block;
+    }
+    .hero-sub {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-top: 20px;
+      margin-bottom: 48px;
+      letter-spacing: 0.05em;
+    }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; }
+    .btn {
+      padding: 13px 32px;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: 1.5px solid var(--gold);
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+    }
+    .btn-outline:hover { background: var(--gold); color: #fff; }
+
+    /* 分隔線 */
+    .divider {
+      width: 60px; height: 1px;
+      background: var(--gold);
+      margin: 0 auto;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 100px 60px; }
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 60px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── PORTFOLIO ── */
+    #portfolio { background: var(--beige); }
+
+    .filter-bar {
+      display: flex; gap: 0; justify-content: center;
+      margin-bottom: 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-btn {
+      padding: 12px 28px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .filter-btn::after {
+      content: '';
+      position: absolute; bottom: -1px; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .filter-btn.active { color: var(--text); }
+    .filter-btn.active::after { transform: scaleX(1); }
+    .filter-btn:hover { color: var(--text); }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+      transition: border-color 0.3s, transform 0.3s;
+      cursor: pointer;
+      background: var(--beige-card);
+    }
+    .portfolio-card:hover {
+      border-color: var(--gold);
+      transform: scale(1.02);
+    }
+    .portfolio-card.hidden { display: none; }
+
+    .card-img {
+      width: 100%; aspect-ratio: 3/4;
+      background: var(--beige-dark);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* placeholder 樣式（還沒放圖時） */
+    .card-img.placeholder {
+      background: linear-gradient(135deg, var(--beige-dark) 0%, var(--beige-card) 100%);
+    }
+    .card-img.placeholder::after {
+      content: '+';
+      font-size: 32px;
+      color: var(--gold);
+      opacity: 0.4;
+    }
+
+    .card-info {
+      padding: 16px 18px;
+    }
+    .card-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 15px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+    .card-cat {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--beige-dark); }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .about-photo {
+      width: 100%; aspect-ratio: 3/4;
+      background: var(--beige-card);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .about-photo.placeholder::after {
+      content: '你的照片';
+      font-size: 14px;
+      color: var(--gold);
+      opacity: 0.5;
+      letter-spacing: 0.1em;
+    }
+    .about-text .label {
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .about-text h2 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 24px;
+      letter-spacing: 0.04em;
+    }
+    .about-text p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.9;
+    }
+    .about-stats {
+      display: flex; gap: 40px;
+      margin-top: 36px;
+      padding-top: 36px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    /* ── CONTACT ── */
+    #contact { text-align: center; }
+    .contact-sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      max-width: 480px;
+      margin-left: auto; margin-right: auto;
+    }
+    .contact-links {
+      display: flex; gap: 20px; justify-content: center;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .contact-link {
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+      transition: color 0.3s;
+    }
+    .contact-link:hover { color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--gold);
+      padding: 28px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--gold);
+    }
+    .footer-copy {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── RWD ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 20px; }
+      section { padding: 80px 24px; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      footer { flex-direction: column; gap: 10px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .filter-btn { padding: 10px 16px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="#">周筠<span>YUN</span></a>
+    <ul class="nav-links">
+      <li><a href="#portfolio">作品集</a></li>
+      <li><a href="#about">關於</a></li>
+      <li><a href="#contact">聯絡</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <p class="hero-tag">形象攝影 &times; 燈光設計 &times; 情感影像</p>
+    <h1 class="hero-name">
+      周筠
+      <span class="hero-name-en">YUN</span>
+    </h1>
+    <p class="hero-sub">我設計光，讓你在鏡頭前發光</p>
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="#portfolio">看作品</a>
+      <a class="btn btn-outline" href="#contact">合作諮詢</a>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <p class="section-label">Portfolio</p>
+    <h2 class="section-title">作品集</h2>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="portrait">形象照</button>
+      <button class="filter-btn" data-filter="event">活動・商業</button>
+      <button class="filter-btn" data-filter="baby">抓周紀錄</button>
+      <button class="filter-btn" data-filter="mv">MV・影視</button>
+      <button class="filter-btn" data-filter="travel">旅遊・個人</button>
+    </div>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-card" data-cat="portrait">
+        <div class="card-img"><img src="images/portrait_01.jpg" alt="Janet 形象攝影"></div>
+        <div class="card-info">
+          <p class="card-title">Janet 形象攝影</p>
+          <p class="card-cat">形象照</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="portrait">
+        <div class="card-img"><img src="images/portrait_02.jpg" alt="個人品牌形象"></div>
+        <div class="card-info">
+          <p class="card-title">個人品牌形象</p>
+          <p class="card-cat">形象照</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="portrait">
+        <div class="card-img"><img src="images/portrait_03.jpg" alt="阿沁 藝人形象"></div>
+        <div class="card-info">
+          <p class="card-title">阿沁・藝人形象</p>
+          <p class="card-cat">形象照</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="portrait">
+        <div class="card-img"><img src="images/portrait_04.jpg" alt="新年服裝寫真"></div>
+        <div class="card-info">
+          <p class="card-title">新年服裝寫真</p>
+          <p class="card-cat">形象照</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="event">
+        <div class="card-img"><img src="images/event_01.jpg" alt="Lexus 品酒會"></div>
+        <div class="card-info">
+          <p class="card-title">Lexus 品酒會</p>
+          <p class="card-cat">活動・商業</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="event">
+        <div class="card-img"><img src="images/event_02.jpg" alt="ASUS 商業活動"></div>
+        <div class="card-info">
+          <p class="card-title">ASUS 商業活動</p>
+          <p class="card-cat">活動・商業</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="baby">
+        <div class="card-img"><img src="images/baby_01.jpg" alt="抓周紀錄"></div>
+        <div class="card-info">
+          <p class="card-title">抓周紀錄 Vol.1</p>
+          <p class="card-cat">抓周紀錄</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="baby">
+        <div class="card-img"><img src="images/baby_02.jpg" alt="抓周紀錄"></div>
+        <div class="card-info">
+          <p class="card-title">抓周紀錄 Vol.2</p>
+          <p class="card-cat">抓周紀錄</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="baby">
+        <div class="card-img"><img src="images/baby_03.jpg" alt="抓周紀錄"></div>
+        <div class="card-info">
+          <p class="card-title">抓周紀錄 Vol.3</p>
+          <p class="card-cat">抓周紀錄</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="mv">
+        <div class="card-img"><img src="images/mv_01.jpg" alt="阿沁夏那 MV"></div>
+        <div class="card-info">
+          <p class="card-title">阿沁 ✕ 夏那 MV</p>
+          <p class="card-cat">MV・影視</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="travel">
+        <div class="card-img"><img src="images/personal_01.jpg" alt="首爾旅遊"></div>
+        <div class="card-info">
+          <p class="card-title">首爾・旅遊影像</p>
+          <p class="card-cat">旅遊・個人</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-photo placeholder"></div>
+      <div class="about-text">
+        <p class="label">ABOUT</p>
+        <h2>我是周筠</h2>
+        <p>機械工程出身，走過舞蹈教學，最終落腳在影像與光的世界。我相信每一個人在鏡頭前都值得被看見最真實的自己。</p>
+        <p>擅長以燈光塑造情感，用畫面說那些說不出口的故事。服務涵蓋形象攝影、品牌影像、寵物寫真與活動記錄。</p>
+        <div class="about-stats">
+          <div>
+            <p class="stat-num">500<span style="font-size:20px">+</span></p>
+            <p class="stat-label">拍攝場次</p>
+          </div>
+          <div>
+            <p class="stat-num">3</p>
+            <p class="stat-label">主力服務</p>
+          </div>
+          <div>
+            <p class="stat-num">5</p>
+            <p class="stat-label">年影像經驗</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">開始合作</h2>
+    <p class="contact-sub">無論是形象攝影、品牌影像還是特殊企劃，歡迎告訴我你的想法，我們一起讓畫面說話。</p>
+    <a class="btn btn-primary" href="mailto:lilian091719@gmail.com">寄信給我</a>
+    <div class="contact-links">
+      <a class="contact-link" href="https://www.instagram.com/our_memories_studio" target="_blank">@our_memories_studio</a>
+      <a class="contact-link" href="https://www.instagram.com/chou_yun.0917" target="_blank">@chou_yun.0917</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">周筠 YUN</span>
+    <span class="footer-copy">© 2026 Most Imagine Studio. All rights reserved.</span>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav')
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60)
+    })
+
+    // Portfolio filter
+    const filterBtns = document.querySelectorAll('.filter-btn')
+    const cards = document.querySelectorAll('.portfolio-card')
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'))
+        btn.classList.add('active')
+
+        const filter = btn.dataset.filter
+        cards.forEach(card => {
+          const match = filter === 'all' || card.dataset.cat === filter
+          card.classList.toggle('hidden', !match)
+        })
+      })
+    })
+  </script>
+</body>
+</html>
