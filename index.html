@@ -62,6 +62,38 @@
     }
     .nav-links a:hover { color: var(--white); }
 
+    /* ── DROPDOWN NAV ── */
+    .nav-has-dropdown { position: relative; }
+    .nav-dropdown {
+      position: absolute; top: calc(100% + 16px); left: 50%;
+      transform: translateX(-50%);
+      background: #2C4355;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      min-width: 160px;
+      padding: 10px 0;
+      opacity: 0; visibility: hidden;
+      transform: translateX(-50%) translateY(-6px);
+      transition: opacity 0.22s, transform 0.22s, visibility 0.22s;
+      z-index: 300;
+      white-space: nowrap;
+    }
+    .nav-has-dropdown:hover .nav-dropdown {
+      opacity: 1; visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown a {
+      display: block;
+      padding: 9px 22px;
+      font-size: 12px; letter-spacing: 0.1em;
+      color: var(--text); text-decoration: none;
+      transition: background 0.18s, color 0.18s;
+    }
+    .nav-dropdown a:hover {
+      background: rgba(120,152,170,0.15);
+      color: var(--white);
+    }
+
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
@@ -399,7 +431,17 @@
   <header id="hdr">
     <a class="logo" href="#">周筠<em>YUN</em></a>
     <ul class="nav-links">
-      <li><a href="#portfolio">作品集</a></li>
+      <li class="nav-has-dropdown">
+        <a href="#portfolio">作品集</a>
+        <ul class="nav-dropdown">
+          <li><a href="#s-portrait">形象・寫真</a></li>
+          <li><a href="#s-baby">抓周・百日</a></li>
+          <li><a href="#s-event">活動・商業</a></li>
+          <li><a href="#s-travel">旅遊・生活</a></li>
+          <li><a href="#s-pet">寵物</a></li>
+          <li><a href="#s-wedding">婚禮・家庭</a></li>
+        </ul>
+      </li>
       <li><a href="#about">關於</a></li>
       <li><a href="#contact">聯絡</a></li>
     </ul>
@@ -425,7 +467,7 @@
     <p class="port-label">WORKS · 作 品 集</p>
 
     <!-- ─── 形象・寫真 ─── -->
-    <section class="work-section">
+    <section class="work-section" id="s-portrait">
       <div class="work-left">
         <span class="work-num">01 · 形象・寫真</span>
         <h2 class="work-title">形象攝影</h2>
@@ -447,7 +489,7 @@
     <hr class="work-divider">
 
     <!-- ─── 抓周・百日 ─── -->
-    <section class="work-section">
+    <section class="work-section" id="s-baby">
       <div class="work-left">
         <span class="work-num">02 · 抓周・百日</span>
         <h2 class="work-title">抓周・百日<br>紀錄</h2>
@@ -469,7 +511,7 @@
     <hr class="work-divider">
 
     <!-- ─── 活動・商業 ─── -->
-    <section class="work-section">
+    <section class="work-section" id="s-event">
       <div class="work-left">
         <span class="work-num">03 · 活動・商業</span>
         <h2 class="work-title">活動・商業<br>攝影</h2>
@@ -491,7 +533,7 @@
     <hr class="work-divider">
 
     <!-- ─── 旅遊・生活 ─── -->
-    <section class="work-section">
+    <section class="work-section" id="s-travel">
       <div class="work-left">
         <span class="work-num">04 · 旅遊・生活</span>
         <h2 class="work-title">旅遊・生活<br>影像</h2>
@@ -513,7 +555,7 @@
     <hr class="work-divider">
 
     <!-- ─── 寵物 ─── -->
-    <section class="work-section">
+    <section class="work-section" id="s-pet">
       <div class="work-left">
         <span class="work-num">05 · 寵物</span>
         <h2 class="work-title">寵物寫真</h2>
@@ -535,7 +577,7 @@
     <hr class="work-divider">
 
     <!-- ─── 婚禮・家庭 ─── -->
-    <section class="work-section">
+    <section class="work-section" id="s-wedding">
       <div class="work-left">
         <span class="work-num">06 · 婚禮・家庭</span>
         <h2 class="work-title">婚禮・家庭<br>紀錄</h2>
