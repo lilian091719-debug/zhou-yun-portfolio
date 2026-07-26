@@ -237,6 +237,16 @@
       color: var(--white);
       background: rgba(120,152,170,0.12);
     }
+    .work-ext-link {
+      display: none;
+      align-items: center; gap: 6px;
+      margin-top: 14px;
+      font-size: 11px; letter-spacing: 0.16em;
+      color: var(--blue); text-decoration: none;
+      transition: color 0.22s;
+    }
+    .work-ext-link::after { content: '→'; }
+    .work-ext-link:hover { color: var(--blue-lt); }
     .work-tags {
       font-size: 12px; color: var(--muted);
       letter-spacing: 0.08em; line-height: 1.8;
@@ -476,6 +486,7 @@
           <p>從你的特質出發，以燈光與構圖捕捉最真實的你。無論是個人品牌形象、藝人宣傳照，還是主題服裝寫真，讓每一張照片說出你獨有的故事。</p>
         </div>
         <button class="see-more">查看更多照片</button>
+        <a class="work-ext-link" href="#" target="_blank">完整作品集</a>
         <p class="work-tags">#形象攝影 &nbsp; #品牌影像 &nbsp; #藝人拍攝 &nbsp; #寫真</p>
       </div>
       <div class="work-right">
@@ -496,6 +507,7 @@
           <p>每一個寶寶都是獨一無二的存在，用影像留住這一刻的表情與眼神。從場地佈置到光線規劃，讓這份珍貴的記憶永遠鮮活。</p>
         </div>
         <button class="see-more">查看更多照片</button>
+        <a class="work-ext-link" href="#" target="_blank">完整作品集</a>
         <p class="work-tags">#抓周攝影 &nbsp; #百日紀念 &nbsp; #寶寶寫真 &nbsp; #台北攝影</p>
       </div>
       <div class="work-right">
@@ -516,6 +528,7 @@
           <p>為品牌注入視覺力量。活動現場的每個精彩瞬間，MV 影像的畫面詩意，商業拍攝的精準呈現，讓你的品牌被看見。</p>
         </div>
         <button class="see-more">查看更多照片</button>
+        <a class="work-ext-link" href="#" target="_blank">完整作品集</a>
         <p class="work-tags">#商業攝影 &nbsp; #活動紀錄 &nbsp; #MV拍攝 &nbsp; #品牌影像</p>
       </div>
       <div class="work-right">
@@ -536,6 +549,7 @@
           <p>用鏡頭記錄旅途中的光與情感。每一幀都是屬於那個當下的詩，讓旅行的溫度永遠留在畫面裡。</p>
         </div>
         <button class="see-more">查看更多照片</button>
+        <a class="work-ext-link" href="#" target="_blank">完整作品集</a>
         <p class="work-tags">#旅遊攝影 &nbsp; #生活影像 &nbsp; #海外記錄 &nbsp; #情感影像</p>
       </div>
       <div class="work-right">
@@ -556,6 +570,7 @@
           <p>記錄你的毛小孩最真實的樣子。戶外場景或活動現場，定格每一個讓你心融化的瞬間，讓這份陪伴永遠留存。</p>
         </div>
         <button class="see-more">查看更多照片</button>
+        <a class="work-ext-link" href="#" target="_blank">完整作品集</a>
         <p class="work-tags">#寵物攝影 &nbsp; #戶外寫真 &nbsp; #毛小孩 &nbsp; #寵物記錄</p>
       </div>
       <div class="work-right">
@@ -576,6 +591,7 @@
           <p>婚禮是一生中最重要的儀式，家庭是最溫暖的歸屬。我在這些時刻成為最安靜的記錄者，讓愛意永遠留在畫面中。</p>
         </div>
         <button class="see-more">查看更多照片</button>
+        <a class="work-ext-link" href="#" target="_blank">完整作品集</a>
         <p class="work-tags">#婚禮攝影 &nbsp; #家庭紀錄 &nbsp; #人生時刻</p>
       </div>
       <div class="work-right">
@@ -700,8 +716,13 @@
       ],
 
       event: [
-        'images/event_01.jpg',      // ← 左格大圖
-        'images/mv_01.jpg',         // ← 右格大圖
+        'images/event_asus_01.jpg',     // ← 左格大圖
+        'images/event_tekscono_01.jpg', // ← 右格大圖
+        'images/event_asus_02.jpg',
+        'images/event_tekscono_02.jpg',
+        'images/event_cycle_01.jpg',
+        'images/event_cycle_02.jpg',
+        'images/event_01.jpg',
         'images/event_02.jpg',
       ],
 
@@ -741,9 +762,24 @@
     }
     // ════════════════════════════════════════════════════════════════
 
+    // ════════════════════════════════════════════════════════════════
+    //  完整作品連結設定 ── 填入外部連結（Google Drive / IG / 其他）
+    //  留空字串 '' 代表不顯示連結
+    // ════════════════════════════════════════════════════════════════
+    const LINKS = {
+      portrait: '',
+      baby:     '',
+      event:    'https://www.notion.so/YUN-350aa597cce680fa9e20f79e34dd0381',
+      travel:   '',
+      pet:      '',
+      wedding:  '',
+    }
+    // ════════════════════════════════════════════════════════════════
+
     // 自動把上面的設定套到頁面上
     document.querySelectorAll('.work-section[data-cat]').forEach(section => {
-      const photos = PHOTOS[section.dataset.cat] || []
+      const cat = section.dataset.cat
+      const photos = PHOTOS[cat] || []
       section.querySelectorAll('.work-photo').forEach((img, i) => {
         img.src = photos[i] || ''
         img.dataset.images = JSON.stringify(photos)
@@ -751,6 +787,13 @@
       })
       const btn = section.querySelector('.see-more')
       if (btn) btn.dataset.images = JSON.stringify(photos)
+
+      const linkEl = section.querySelector('.work-ext-link')
+      if (linkEl) {
+        const url = LINKS[cat]
+        if (url) { linkEl.href = url; linkEl.style.display = 'inline-flex' }
+        else { linkEl.style.display = 'none' }
+      }
     })
 
     // Header
