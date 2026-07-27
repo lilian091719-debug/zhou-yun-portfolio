@@ -4,95 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>周筠 YUN — 形象攝影 × 燈光設計</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #1C2B37;
-      --bg-alt:  #213242;
-      --text:    #C8DEE9;
-      --muted:   #7A9DB0;
-      --blue:    #7898AA;
-      --blue-lt: #9DBDCE;
-      --border:  rgba(120,160,185,0.16);
-      --divider: rgba(120,160,185,0.2);
-      --white:   #E8F2F9;
+      --beige:      #F5F0E8;
+      --beige-dark: #EDE8DB;
+      --beige-card: #E8E2D5;
+      --gold:       #C9A84C;
+      --gold-light: #D4B96A;
+      --text:       #2C2416;
+      --text-muted: #7A6B52;
+      --border:     rgba(201,168,76,0.35);
     }
 
     html { scroll-behavior: smooth; }
+
     body {
       font-family: 'Noto Sans TC', sans-serif;
-      background: var(--bg);
+      background: var(--beige);
       color: var(--text);
-      line-height: 1.8;
+      line-height: 1.7;
     }
 
-    /* ── HEADER ── */
-    header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      height: 58px;
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 56px;
+      padding: 20px 60px;
       background: transparent;
       transition: background 0.4s, border-bottom 0.4s;
     }
-    header.scrolled {
-      background: rgba(28,43,55,0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+    nav.scrolled {
+      background: var(--beige);
+      border-bottom: 1px solid var(--gold);
     }
-    .logo {
+    .nav-logo {
       font-family: 'Noto Serif TC', serif;
-      font-size: 16px; font-weight: 400;
-      letter-spacing: 0.12em;
-      color: var(--white); text-decoration: none;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      text-decoration: none;
     }
-    .logo em {
+    .nav-logo span {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: 20px;
-      color: var(--blue-lt); margin-left: 6px;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--gold);
+      margin-left: 4px;
     }
     .nav-links { display: flex; gap: 36px; list-style: none; }
     .nav-links a {
-      font-size: 13px; letter-spacing: 0.12em;
-      color: var(--muted); text-decoration: none;
-      transition: color 0.25s;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 3px;
     }
-    .nav-links a:hover { color: var(--white); }
-
-    /* ── DROPDOWN NAV ── */
-    .nav-has-dropdown { position: relative; }
-    .nav-dropdown {
-      position: absolute; top: calc(100% + 16px); left: 50%;
-      transform: translateX(-50%);
-      background: #2C4355;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      min-width: 160px;
-      padding: 10px 0;
-      opacity: 0; visibility: hidden;
-      transform: translateX(-50%) translateY(-6px);
-      transition: opacity 0.22s, transform 0.22s, visibility 0.22s;
-      z-index: 300;
-      white-space: nowrap;
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--gold);
+      transition: width 0.3s;
     }
-    .nav-has-dropdown:hover .nav-dropdown {
-      opacity: 1; visibility: visible;
-      transform: translateX(-50%) translateY(0);
-    }
-    .nav-dropdown a {
-      display: block;
-      padding: 9px 22px;
-      font-size: 12px; letter-spacing: 0.1em;
-      color: var(--text); text-decoration: none;
-      transition: background 0.18s, color 0.18s;
-    }
-    .nav-dropdown a:hover {
-      background: rgba(120,152,170,0.15);
-      color: var(--white);
-    }
+    .nav-links a:hover::after { width: 100%; }
 
     /* ── HERO ── */
     #hero {
@@ -100,7 +79,7 @@
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center;
-      padding: 0 40px;
+      padding: 120px 40px 80px;
       position: relative;
       background-image: url('images/hero.jpg');
       background-size: cover;
@@ -111,514 +90,600 @@
       position: absolute; inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(28,43,55,0.55) 0%,
-        rgba(28,43,55,0.68) 60%,
-        rgba(28,43,55,0.88) 100%
+        rgba(245,240,232,0.55) 0%,
+        rgba(245,240,232,0.75) 50%,
+        rgba(245,240,232,0.92) 100%
       );
     }
     #hero > * { position: relative; z-index: 1; }
-    .hero-eyebrow {
-      font-size: 11px; letter-spacing: 0.45em;
-      color: var(--blue-lt); margin-bottom: 28px;
+    .hero-tag {
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 28px;
     }
     .hero-name {
       font-family: 'Noto Serif TC', serif;
-      font-size: clamp(56px, 9vw, 100px);
-      font-weight: 400; line-height: 1.1;
-      color: var(--white); letter-spacing: 0.08em;
-      margin-bottom: 4px;
+      font-size: clamp(56px, 8vw, 96px);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
     }
     .hero-name-en {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: clamp(42px, 7vw, 80px);
+      font-size: clamp(40px, 6vw, 72px);
       font-weight: 300;
-      color: var(--blue-lt);
+      color: var(--gold);
       display: block;
     }
     .hero-sub {
-      font-size: 14px; letter-spacing: 0.15em;
-      color: var(--muted);
-      margin-top: 24px; margin-bottom: 52px;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-top: 20px;
+      margin-bottom: 48px;
+      letter-spacing: 0.05em;
     }
     .hero-btns { display: flex; gap: 16px; justify-content: center; }
     .btn {
-      padding: 12px 30px; font-size: 12px;
-      letter-spacing: 0.16em; text-decoration: none;
-      cursor: pointer; border-radius: 2px;
-      transition: all 0.28s;
-      font-family: 'Noto Sans TC', sans-serif;
-      border: 1px solid var(--blue-lt);
+      padding: 13px 32px;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: 1.5px solid var(--gold);
     }
-    .btn-fill { background: var(--blue); color: var(--white); border-color: var(--blue); }
-    .btn-fill:hover { background: var(--blue-lt); border-color: var(--blue-lt); }
-    .btn-out { background: transparent; color: var(--white); }
-    .btn-out:hover { background: rgba(120,152,170,0.2); }
-    .hero-scroll {
-      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-      font-size: 11px; letter-spacing: 0.3em;
-      color: var(--muted); text-decoration: none;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      animation: bounce 2s infinite;
+    .btn-primary {
+      background: var(--gold);
+      color: #fff;
     }
-    .hero-scroll::after {
-      content: '';
-      width: 1px; height: 36px;
-      background: var(--divider);
-      display: block;
+    .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
     }
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
+    .btn-outline:hover { background: var(--gold); color: #fff; }
+
+    /* 分隔線 */
+    .divider {
+      width: 60px; height: 1px;
+      background: var(--gold);
+      margin: 0 auto;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 100px 60px; }
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 60px;
+      letter-spacing: 0.05em;
     }
 
     /* ── PORTFOLIO ── */
-    #portfolio { padding: 100px 0 60px; }
-    .port-label {
-      text-align: center;
-      font-size: 11px; letter-spacing: 0.45em;
-      color: var(--blue); margin-bottom: 80px;
-    }
+    #portfolio { background: var(--beige); }
 
-    /* Work section: left text + right photos */
-    .work-section {
-      display: flex;
-      align-items: flex-start;
-      gap: 0;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 80px 56px;
+    .filter-bar {
+      display: flex; gap: 0; justify-content: center;
+      margin-bottom: 56px;
+      border-bottom: 1px solid var(--border);
     }
-    .work-left {
-      width: 38%; flex-shrink: 0;
-      padding-right: 72px;
-      padding-top: 12px;
-    }
-    .work-num {
-      display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px; letter-spacing: 0.3em;
-      color: var(--blue); margin-bottom: 20px;
-    }
-    .work-title {
-      font-family: 'Noto Serif TC', serif;
-      font-size: clamp(26px, 3.5vw, 38px);
-      font-weight: 400; line-height: 1.3;
-      color: var(--white); letter-spacing: 0.04em;
-      margin-bottom: 8px;
-    }
-    .work-type {
-      font-size: 13px; letter-spacing: 0.12em;
-      color: var(--blue-lt); margin-bottom: 28px;
-    }
-    .work-desc {
-      border-left: 2px solid var(--blue);
-      padding-left: 18px;
-      margin-bottom: 36px;
-    }
-    .work-desc p {
-      font-size: 14px; color: var(--muted);
-      line-height: 1.95;
-    }
-    .see-more {
-      display: inline-block;
-      padding: 11px 26px;
-      font-size: 12px; letter-spacing: 0.14em;
-      border: 1px solid var(--divider);
-      color: var(--text); background: transparent;
-      cursor: pointer;
-      border-radius: 30px;
-      transition: all 0.28s;
-      margin-bottom: 24px;
-      font-family: 'Noto Sans TC', sans-serif;
-    }
-    .see-more:hover {
-      border-color: var(--blue-lt);
-      color: var(--white);
-      background: rgba(120,152,170,0.12);
-    }
-    .work-ext-link {
-      display: none;
-      align-items: center; gap: 6px;
-      margin-top: 14px;
-      font-size: 11px; letter-spacing: 0.16em;
-      color: var(--blue); text-decoration: none;
-      transition: color 0.22s;
-    }
-    .work-ext-link::after { content: '→'; }
-    .work-ext-link:hover { color: var(--blue-lt); }
-    .work-tags {
-      font-size: 12px; color: var(--muted);
-      letter-spacing: 0.08em; line-height: 1.8;
-    }
-
-    .work-right {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-    }
-    .work-photo {
-      width: 100%; aspect-ratio: 3/4;
-      object-fit: cover; display: block;
-      cursor: pointer;
-      transition: opacity 0.3s, transform 0.3s;
-    }
-    .work-photo:hover { opacity: 0.88; transform: scale(1.01); }
-
-    /* Section divider */
-    .work-divider {
-      max-width: 1200px; margin: 0 auto;
+    .filter-btn {
+      padding: 12px 28px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      background: none;
       border: none;
-      border-top: 1px solid var(--divider);
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .filter-btn::after {
+      content: '';
+      position: absolute; bottom: -1px; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .filter-btn.active { color: var(--text); }
+    .filter-btn.active::after { transform: scaleX(1); }
+    .filter-btn:hover { color: var(--text); }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+      transition: border-color 0.3s, transform 0.3s;
+      cursor: pointer;
+      background: var(--beige-card);
+    }
+    .portfolio-card:hover {
+      border-color: var(--gold);
+      transform: scale(1.02);
+    }
+    .portfolio-card.hidden { display: none; }
+
+    .card-img {
+      width: 100%; aspect-ratio: 3/4;
+      background: var(--beige-dark);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* placeholder 樣式（還沒放圖時） */
+    .card-img.placeholder {
+      background: linear-gradient(135deg, var(--beige-dark) 0%, var(--beige-card) 100%);
+    }
+    .card-img.placeholder::after {
+      content: '+';
+      font-size: 32px;
+      color: var(--gold);
+      opacity: 0.4;
+    }
+
+    .card-info {
+      padding: 16px 18px;
+    }
+    .card-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 15px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+    .card-cat {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
     }
 
     /* ── ABOUT ── */
-    #about {
-      background: var(--bg-alt);
-      padding: 100px 56px;
-    }
+    #about { background: var(--beige-dark); }
     .about-inner {
-      display: grid; grid-template-columns: 1fr 1.1fr;
-      gap: 80px; align-items: center;
-      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
     }
     .about-photo {
       width: 100%; aspect-ratio: 3/4;
-      background: var(--bg);
+      background: var(--beige-card);
       border: 1px solid var(--border);
-      overflow: hidden;
       display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
     }
     .about-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .about-photo.ph::after {
-      content: '你的照片'; font-size: 13px;
-      color: var(--blue); opacity: 0.4; letter-spacing: 0.15em;
+    .about-photo.placeholder::after {
+      content: '你的照片';
+      font-size: 14px;
+      color: var(--gold);
+      opacity: 0.5;
+      letter-spacing: 0.1em;
     }
-    .about-text .eyebrow {
-      font-size: 11px; letter-spacing: 0.4em;
-      color: var(--blue); margin-bottom: 18px;
+    .about-text .label {
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 16px;
     }
     .about-text h2 {
       font-family: 'Noto Serif TC', serif;
-      font-size: 32px; font-weight: 400;
-      color: var(--white);
-      margin-bottom: 24px; letter-spacing: 0.04em;
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 24px;
+      letter-spacing: 0.04em;
     }
     .about-text p {
-      font-size: 14px; color: var(--muted);
-      line-height: 2; margin-bottom: 14px;
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.9;
     }
     .about-stats {
       display: flex; gap: 40px;
-      margin-top: 40px; padding-top: 32px;
+      margin-top: 36px;
+      padding-top: 36px;
       border-top: 1px solid var(--border);
     }
     .stat-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 38px; color: var(--blue-lt); line-height: 1;
+      font-size: 36px;
+      color: var(--gold);
+      line-height: 1;
     }
     .stat-label {
-      font-size: 11px; color: var(--muted);
-      letter-spacing: 0.1em; margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-top: 4px;
     }
 
     /* ── CONTACT ── */
-    #contact { padding: 100px 56px; text-align: center; }
-    .contact-title {
-      font-family: 'Noto Serif TC', serif;
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: 400; color: var(--white);
-      letter-spacing: 0.04em; margin-bottom: 12px;
-    }
+    #contact { text-align: center; }
     .contact-sub {
-      font-size: 14px; color: var(--muted);
-      max-width: 440px; margin: 0 auto 48px;
-      line-height: 2;
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      max-width: 480px;
+      margin-left: auto; margin-right: auto;
     }
     .contact-links {
-      display: flex; gap: 24px; justify-content: center;
-      margin-top: 36px; flex-wrap: wrap;
+      display: flex; gap: 20px; justify-content: center;
+      margin-top: 40px;
+      flex-wrap: wrap;
     }
-    .c-link {
-      font-size: 13px; letter-spacing: 0.1em;
-      color: var(--muted); text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2px; transition: all 0.25s;
+    .contact-link {
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+      transition: color 0.3s;
     }
-    .c-link:hover { color: var(--white); border-color: var(--blue-lt); }
+    .contact-link:hover { color: var(--gold); }
 
     /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 56px 80px;
+      border-top: 1px solid var(--gold);
+      padding: 28px 60px;
       display: flex; justify-content: space-between; align-items: center;
     }
     .footer-name {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: 15px; color: var(--blue-lt);
+      font-style: italic;
+      font-size: 16px;
+      color: var(--gold);
     }
-    .footer-copy { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
+    .footer-copy {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── GALLERY CARD ── */
+    .gallery-card { position: relative; }
+    .card-gallery-hint {
+      position: absolute; bottom: 56px; right: 12px;
+      font-size: 11px; letter-spacing: 0.1em;
+      color: var(--gold);
+      background: rgba(245,240,232,0.85);
+      padding: 4px 10px;
+      border: 1px solid var(--gold);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-card:hover .card-gallery-hint { opacity: 1; }
 
     /* ── LIGHTBOX ── */
     .lightbox {
-      display: none; position: fixed; inset: 0; z-index: 9999;
-      background: rgba(10,18,24,0.97);
+      display: none;
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(30,24,16,0.95);
       align-items: center; justify-content: center;
     }
     .lightbox.open { display: flex; }
-    .lb-wrap { max-width: 90vw; max-height: 90vh; }
-    #lb-img { max-width: 100%; max-height: 90vh; object-fit: contain; display: block; }
+    .lb-img-wrap {
+      max-width: 90vw; max-height: 88vh;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #lb-img {
+      max-width: 100%; max-height: 88vh;
+      object-fit: contain;
+      border: 1px solid rgba(201,168,76,0.3);
+    }
     .lb-close {
-      position: fixed; top: 20px; right: 28px;
+      position: fixed; top: 24px; right: 32px;
       background: none; border: none;
-      color: var(--blue-lt); font-size: 28px; cursor: pointer; z-index: 10000;
+      color: var(--gold); font-size: 28px;
+      cursor: pointer; z-index: 10000;
     }
     .lb-prev, .lb-next {
       position: fixed; top: 50%; transform: translateY(-50%);
       background: none; border: none;
-      color: var(--blue-lt); font-size: 54px;
-      cursor: pointer; z-index: 10000; padding: 0 16px;
-      opacity: 0.6; transition: opacity 0.2s;
+      color: var(--gold); font-size: 56px;
+      cursor: pointer; z-index: 10000;
+      padding: 0 20px; line-height: 1;
+      opacity: 0.7; transition: opacity 0.2s;
     }
     .lb-prev:hover, .lb-next:hover { opacity: 1; }
-    .lb-prev { left: 4px; }
-    .lb-next { right: 4px; }
+    .lb-prev { left: 10px; }
+    .lb-next { right: 10px; }
     .lb-counter {
-      position: fixed; bottom: 20px; left: 50%;
+      position: fixed; bottom: 24px; left: 50%;
       transform: translateX(-50%);
-      font-size: 12px; color: var(--blue); letter-spacing: 0.2em;
+      font-size: 13px; color: var(--gold);
+      letter-spacing: 0.15em;
     }
 
-    /* ── MOBILE BOTTOM NAV ── */
-    .bottom-nav {
-      display: none;
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
-      background: rgba(28,43,55,0.97);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid var(--border);
-      padding: 6px 0 env(safe-area-inset-bottom, 6px);
+    /* ── PHOTO ALBUM ── */
+    .photo-album {
+      grid-column: 1 / -1;
+      padding: 28px 32px 32px;
+      background: var(--beige-card);
+      border: 1px solid var(--border);
     }
-    .bn-inner { display: flex; justify-content: space-around; }
-    .bn-item {
-      display: flex; flex-direction: column; align-items: center; gap: 2px;
-      color: var(--muted); text-decoration: none;
-      font-size: 10px; letter-spacing: 0.06em;
-      padding: 6px 18px; transition: color 0.2s;
+    .photo-album.hidden { display: none; }
+    .album-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
     }
-    .bn-item:hover { color: var(--blue-lt); }
-    .bn-icon { width: 22px; height: 22px; }
+    .album-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .album-meta {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+    }
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 6px;
+    }
+    .album-thumb {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      cursor: pointer;
+      display: block;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .album-thumb:hover { opacity: 0.82; transform: scale(1.02); }
 
     /* ── RWD ── */
-    @media (max-width: 900px) {
-      header { padding: 0 20px; }
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
       .nav-links { gap: 20px; }
-      .nav-links a { font-size: 12px; }
-      #portfolio { padding: 80px 0 40px; }
-      .work-section {
-        flex-direction: column;
-        padding: 60px 20px;
-        gap: 0;
-      }
-      .work-left { width: 100%; padding-right: 0; padding-top: 0; margin-bottom: 28px; }
-      .work-right { width: 100%; }
-      #about { padding: 80px 20px; }
+      section { padding: 80px 24px; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .about-inner { grid-template-columns: 1fr; gap: 40px; }
-      .about-photo { max-width: 300px; margin: 0 auto; }
-      #contact { padding: 80px 20px; }
-      footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px 20px 90px; }
-      .bottom-nav { display: block; }
+      footer { flex-direction: column; gap: 10px; text-align: center; }
     }
     @media (max-width: 480px) {
-      .work-right { gap: 4px; }
-      .about-stats { gap: 24px; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .filter-btn { padding: 10px 16px; font-size: 12px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header id="hdr">
-    <a class="logo" href="#">周筠<em>YUN</em></a>
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="#">周筠<span>YUN</span></a>
     <ul class="nav-links">
-      <li class="nav-has-dropdown">
-        <a href="#portfolio">作品集</a>
-        <ul class="nav-dropdown">
-          <li><a href="#s-portrait">人物形象照</a></li>
-          <li><a href="#s-baby">抓周攝影</a></li>
-          <li><a href="#s-wedding">婚禮作品</a></li>
-          <li><a href="#s-travel">寵物旅遊</a></li>
-          <li><a href="#s-pet">寵物棚拍寫真</a></li>
-          <li><a href="#s-event">活動紀錄</a></li>
-        </ul>
-      </li>
+      <li><a href="#portfolio">作品集</a></li>
       <li><a href="#about">關於</a></li>
       <li><a href="#contact">聯絡</a></li>
     </ul>
-  </header>
+  </nav>
 
   <!-- HERO -->
   <section id="hero">
-    <p class="hero-eyebrow">PHOTOGRAPHER × LIGHTING DESIGNER</p>
+    <p class="hero-tag">形象攝影 &times; 燈光設計 &times; 情感影像</p>
     <h1 class="hero-name">
       周筠
       <span class="hero-name-en">YUN</span>
     </h1>
-    <p class="hero-sub">形象攝影 × 燈光設計 × 情感影像</p>
+    <p class="hero-sub">我設計光，讓你在鏡頭前發光</p>
     <div class="hero-btns">
-      <a class="btn btn-fill" href="#portfolio">看作品集</a>
-      <a class="btn btn-out" href="#contact">合作諮詢</a>
+      <a class="btn btn-primary" href="#portfolio">看作品</a>
+      <a class="btn btn-outline" href="#contact">合作諮詢</a>
     </div>
-    <a class="hero-scroll" href="#portfolio">SCROLL</a>
   </section>
 
   <!-- PORTFOLIO -->
-  <div id="portfolio">
-    <p class="port-label">WORKS · 作 品 集</p>
+  <section id="portfolio">
+    <p class="section-label">Portfolio</p>
+    <h2 class="section-title">作品集</h2>
 
-    <!-- ─── 形象・寫真 ─── -->
-    <section class="work-section" id="s-portrait" data-cat="portrait">
-      <div class="work-left">
-        <span class="work-num">01 · 人物形象照</span>
-        <h2 class="work-title">人物形象照</h2>
-        <p class="work-type">個人品牌・藝人形象・寫真</p>
-        <div class="work-desc">
-          <p>從你的特質出發，以燈光與構圖捕捉最真實的你。無論是個人品牌形象、藝人宣傳照，還是主題服裝寫真，讓每一張照片說出你獨有的故事。</p>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="portrait">形象照</button>
+      <button class="filter-btn" data-filter="event">活動・商業</button>
+      <button class="filter-btn" data-filter="baby">抓周紀錄</button>
+      <button class="filter-btn" data-filter="mv">MV・影視</button>
+      <button class="filter-btn" data-filter="travel">寵物戶外寫真</button>
+    </div>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-card" data-cat="portrait">
+        <div class="card-img"><img src="images/portrait_01.jpg" alt="Janet 形象攝影"></div>
+        <div class="card-info">
+          <p class="card-title">Janet 形象攝影</p>
+          <p class="card-cat">形象照</p>
         </div>
-        <button class="see-more">查看更多照片</button>
-        <a class="work-ext-link" href="#" target="_blank">完整作品集</a>
-        <p class="work-tags">#形象攝影 &nbsp; #品牌影像 &nbsp; #藝人拍攝 &nbsp; #寫真</p>
       </div>
-      <div class="work-right">
-        <img class="work-photo" alt="人物形象照">
-        <img class="work-photo" alt="人物形象照">
-      </div>
-    </section>
 
-    <hr class="work-divider">
-
-    <!-- ─── 抓周・百日 ─── -->
-    <section class="work-section" id="s-baby" data-cat="baby">
-      <div class="work-left">
-        <span class="work-num">02 · 抓周攝影</span>
-        <h2 class="work-title">抓周攝影</h2>
-        <p class="work-type">寶寶抓周 · 百日 · 主題派對</p>
-        <div class="work-desc">
-          <p>每一個寶寶都是獨一無二的存在，用影像留住這一刻的表情與眼神。從場地佈置到光線規劃，讓這份珍貴的記憶永遠鮮活。</p>
+      <div class="portfolio-card" data-cat="portrait">
+        <div class="card-img"><img src="images/portrait_02.jpg" alt="個人品牌形象"></div>
+        <div class="card-info">
+          <p class="card-title">個人品牌形象</p>
+          <p class="card-cat">形象照</p>
         </div>
-        <button class="see-more">查看更多照片</button>
-        <a class="work-ext-link" href="#" target="_blank">完整作品集</a>
-        <p class="work-tags">#抓周攝影 &nbsp; #百日紀念 &nbsp; #寶寶寫真 &nbsp; #台北攝影</p>
       </div>
-      <div class="work-right">
-        <img class="work-photo" alt="抓周紀錄">
-        <img class="work-photo" alt="抓周紀錄">
-      </div>
-    </section>
 
-    <hr class="work-divider">
-
-    <!-- ─── 活動・商業 ─── -->
-    <section class="work-section" id="s-event" data-cat="event">
-      <div class="work-left">
-        <span class="work-num">03 · 活動紀錄</span>
-        <h2 class="work-title">活動紀錄</h2>
-        <p class="work-type">品牌活動 · MV 製作 · 商業拍攝</p>
-        <div class="work-desc">
-          <p>為品牌注入視覺力量。活動現場的每個精彩瞬間，MV 影像的畫面詩意，商業拍攝的精準呈現，讓你的品牌被看見。</p>
+      <div class="portfolio-card" data-cat="portrait">
+        <div class="card-img"><img src="images/portrait_03.jpg" alt="阿沁 藝人形象"></div>
+        <div class="card-info">
+          <p class="card-title">阿沁・藝人形象</p>
+          <p class="card-cat">形象照</p>
         </div>
-        <button class="see-more">查看更多照片</button>
-        <a class="work-ext-link" href="#" target="_blank">完整作品集</a>
-        <p class="work-tags">#商業攝影 &nbsp; #活動紀錄 &nbsp; #MV拍攝 &nbsp; #品牌影像</p>
       </div>
-      <div class="work-right">
-        <img class="work-photo" alt="活動紀錄">
-        <img class="work-photo" alt="活動紀錄">
-      </div>
-    </section>
 
-    <hr class="work-divider">
-
-    <!-- ─── 旅遊・生活 ─── -->
-    <section class="work-section" id="s-travel" data-cat="travel">
-      <div class="work-left">
-        <span class="work-num">04 · 寵物旅遊</span>
-        <h2 class="work-title">寵物旅遊</h2>
-        <p class="work-type">濟州島 · 日本 · 杭州 · 首爾</p>
-        <div class="work-desc">
-          <p>用鏡頭記錄旅途中的光與情感。每一幀都是屬於那個當下的詩，讓旅行的溫度永遠留在畫面裡。</p>
+      <div class="portfolio-card" data-cat="portrait">
+        <div class="card-img"><img src="images/portrait_04.jpg" alt="新年服裝寫真"></div>
+        <div class="card-info">
+          <p class="card-title">新年服裝寫真</p>
+          <p class="card-cat">形象照</p>
         </div>
-        <button class="see-more">查看更多照片</button>
-        <a class="work-ext-link" href="#" target="_blank">完整作品集</a>
-        <p class="work-tags">#旅遊攝影 &nbsp; #生活影像 &nbsp; #海外記錄 &nbsp; #情感影像</p>
       </div>
-      <div class="work-right">
-        <img class="work-photo" alt="寵物旅遊">
-        <img class="work-photo" alt="寵物旅遊">
-      </div>
-    </section>
 
-    <hr class="work-divider">
-
-    <!-- ─── 寵物 ─── -->
-    <section class="work-section" id="s-pet" data-cat="pet">
-      <div class="work-left">
-        <span class="work-num">05 · 寵物棚拍寫真</span>
-        <h2 class="work-title">寵物棚拍寫真</h2>
-        <p class="work-type">戶外寫真 · 寵物活動紀錄</p>
-        <div class="work-desc">
-          <p>記錄你的毛小孩最真實的樣子。戶外場景或活動現場，定格每一個讓你心融化的瞬間，讓這份陪伴永遠留存。</p>
+      <div class="portfolio-card" data-cat="event">
+        <div class="card-img"><img src="images/event_01.jpg" alt="Lexus 品酒會"></div>
+        <div class="card-info">
+          <p class="card-title">Lexus 品酒會</p>
+          <p class="card-cat">活動・商業</p>
         </div>
-        <button class="see-more">查看更多照片</button>
-        <a class="work-ext-link" href="#" target="_blank">完整作品集</a>
-        <p class="work-tags">#寵物攝影 &nbsp; #戶外寫真 &nbsp; #毛小孩 &nbsp; #寵物記錄</p>
       </div>
-      <div class="work-right">
-        <img class="work-photo" alt="寵物棚拍寫真">
-        <img class="work-photo" alt="寵物棚拍寫真">
-      </div>
-    </section>
 
-    <hr class="work-divider">
-
-    <!-- ─── 婚禮・家庭 ─── -->
-    <section class="work-section" id="s-wedding" data-cat="wedding">
-      <div class="work-left">
-        <span class="work-num">06 · 婚禮作品</span>
-        <h2 class="work-title">婚禮作品</h2>
-        <p class="work-type">婚禮攝影 · 家庭影像</p>
-        <div class="work-desc">
-          <p>婚禮是一生中最重要的儀式，家庭是最溫暖的歸屬。我在這些時刻成為最安靜的記錄者，讓愛意永遠留在畫面中。</p>
+      <div class="portfolio-card" data-cat="event">
+        <div class="card-img"><img src="images/event_02.jpg" alt="ASUS 商業活動"></div>
+        <div class="card-info">
+          <p class="card-title">ASUS 商業活動</p>
+          <p class="card-cat">活動・商業</p>
         </div>
-        <button class="see-more">查看更多照片</button>
-        <a class="work-ext-link" href="#" target="_blank">完整作品集</a>
-        <p class="work-tags">#婚禮攝影 &nbsp; #家庭紀錄 &nbsp; #人生時刻</p>
       </div>
-      <div class="work-right">
-        <img class="work-photo" alt="婚禮作品">
-        <img class="work-photo" alt="婚禮作品">
-      </div>
-    </section>
 
-  </div><!-- /portfolio -->
+      <div class="portfolio-card" data-cat="baby">
+        <div class="card-img"><img src="images/baby_01.jpg" alt="抓周紀錄"></div>
+        <div class="card-info">
+          <p class="card-title">抓周紀錄 Vol.1</p>
+          <p class="card-cat">抓周紀錄</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="baby">
+        <div class="card-img"><img src="images/baby_02.jpg" alt="抓周紀錄"></div>
+        <div class="card-info">
+          <p class="card-title">抓周紀錄 Vol.2</p>
+          <p class="card-cat">抓周紀錄</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="baby">
+        <div class="card-img"><img src="images/baby_03.jpg" alt="抓周紀錄"></div>
+        <div class="card-info">
+          <p class="card-title">抓周紀錄 Vol.3</p>
+          <p class="card-cat">抓周紀錄</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="mv">
+        <div class="card-img"><img src="images/mv_01.jpg" alt="阿沁夏那 MV"></div>
+        <div class="card-info">
+          <p class="card-title">阿沁 ✕ 夏那 MV</p>
+          <p class="card-cat">MV・影視</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-cat="travel">
+        <div class="card-img"><img src="images/personal_01.jpg" alt="首爾寵物戶外"></div>
+        <div class="card-info">
+          <p class="card-title">首爾・寵物戶外</p>
+          <p class="card-cat">寵物戶外寫真</p>
+        </div>
+      </div>
+
+      <div class="photo-album" data-cat="travel">
+        <div class="album-header">
+          <span class="album-title">濟州島・旅遊影像</span>
+          <span class="album-meta">寵物戶外寫真 · 17 張</span>
+        </div>
+        <div class="album-grid" data-images='["images/jeju/lia02822.jpg","images/jeju/lia02826.jpg","images/jeju/lia02832.jpg","images/jeju/lia02861.jpg","images/jeju/lia03438.jpg","images/jeju/lia03462.jpg","images/jeju/lia03466.jpg","images/jeju/lia03467.jpg","images/jeju/lia03479.jpg","images/jeju/lia03494.jpg","images/jeju/lia03632.jpg","images/jeju/lia03638.jpg","images/jeju/yun01668.jpg","images/jeju/yun01741.jpg","images/jeju/yun08369.jpg","images/jeju/yun08447.jpg","images/jeju/yun08504.jpg"]'>
+          <img src="images/jeju/lia02822.jpg" alt="" class="album-thumb" data-index="0">
+          <img src="images/jeju/lia02826.jpg" alt="" class="album-thumb" data-index="1">
+          <img src="images/jeju/lia02832.jpg" alt="" class="album-thumb" data-index="2">
+          <img src="images/jeju/lia02861.jpg" alt="" class="album-thumb" data-index="3">
+          <img src="images/jeju/lia03438.jpg" alt="" class="album-thumb" data-index="4">
+          <img src="images/jeju/lia03462.jpg" alt="" class="album-thumb" data-index="5">
+          <img src="images/jeju/lia03466.jpg" alt="" class="album-thumb" data-index="6">
+          <img src="images/jeju/lia03467.jpg" alt="" class="album-thumb" data-index="7">
+          <img src="images/jeju/lia03479.jpg" alt="" class="album-thumb" data-index="8">
+          <img src="images/jeju/lia03494.jpg" alt="" class="album-thumb" data-index="9">
+          <img src="images/jeju/lia03632.jpg" alt="" class="album-thumb" data-index="10">
+          <img src="images/jeju/lia03638.jpg" alt="" class="album-thumb" data-index="11">
+          <img src="images/jeju/yun01668.jpg" alt="" class="album-thumb" data-index="12">
+          <img src="images/jeju/yun01741.jpg" alt="" class="album-thumb" data-index="13">
+          <img src="images/jeju/yun08369.jpg" alt="" class="album-thumb" data-index="14">
+          <img src="images/jeju/yun08447.jpg" alt="" class="album-thumb" data-index="15">
+          <img src="images/jeju/yun08504.jpg" alt="" class="album-thumb" data-index="16">
+        </div>
+      </div>
+
+      <div class="photo-album" data-cat="baby">
+        <div class="album-header">
+          <span class="album-title">豆豆抓周紀錄</span>
+          <span class="album-meta">抓周紀錄 · 6 張</span>
+        </div>
+        <div class="album-grid" data-images='["images/doudou/YUN05946.jpg","images/doudou/YUN06034.jpg","images/doudou/YUN06042.jpg","images/doudou/YUN06049.jpg","images/doudou/YUN06121.jpg","images/doudou/YUN06231.jpg"]'>
+          <img src="images/doudou/YUN05946.jpg" alt="" class="album-thumb" data-index="0">
+          <img src="images/doudou/YUN06034.jpg" alt="" class="album-thumb" data-index="1">
+          <img src="images/doudou/YUN06042.jpg" alt="" class="album-thumb" data-index="2">
+          <img src="images/doudou/YUN06049.jpg" alt="" class="album-thumb" data-index="3">
+          <img src="images/doudou/YUN06121.jpg" alt="" class="album-thumb" data-index="4">
+          <img src="images/doudou/YUN06231.jpg" alt="" class="album-thumb" data-index="5">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
+    <button class="lb-close" aria-label="關閉">✕</button>
+    <button class="lb-prev" aria-label="上一張">&#8249;</button>
+    <button class="lb-next" aria-label="下一張">&#8250;</button>
+    <div class="lb-img-wrap">
+      <img id="lb-img" src="" alt="">
+    </div>
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
 
   <!-- ABOUT -->
   <section id="about">
     <div class="about-inner">
-      <div class="about-photo ph"></div>
+      <div class="about-photo placeholder"></div>
       <div class="about-text">
-        <p class="eyebrow">ABOUT · 關於我</p>
+        <p class="label">ABOUT</p>
         <h2>我是周筠</h2>
         <p>機械工程出身，走過舞蹈教學，最終落腳在影像與光的世界。我相信每一個人在鏡頭前都值得被看見最真實的自己。</p>
-        <p>擅長以燈光塑造情感，用畫面說那些說不出口的故事。服務涵蓋形象攝影、品牌影像、抓周百日、寵物寫真與活動記錄。</p>
+        <p>擅長以燈光塑造情感，用畫面說那些說不出口的故事。服務涵蓋形象攝影、品牌影像、寵物寫真與活動記錄。</p>
         <div class="about-stats">
           <div>
-            <p class="stat-num">500<span style="font-size:18px">+</span></p>
+            <p class="stat-num">500<span style="font-size:20px">+</span></p>
             <p class="stat-label">拍攝場次</p>
           </div>
           <div>
-            <p class="stat-num">6</p>
-            <p class="stat-label">服務類型</p>
+            <p class="stat-num">3</p>
+            <p class="stat-label">主力服務</p>
           </div>
           <div>
             <p class="stat-num">5</p>
@@ -631,13 +696,13 @@
 
   <!-- CONTACT -->
   <section id="contact">
-    <p style="font-size:11px;letter-spacing:0.45em;color:var(--blue);margin-bottom:16px;">CONTACT · 聯絡我</p>
-    <h2 class="contact-title">開始合作</h2>
-    <p class="contact-sub">無論是形象攝影、品牌影像，還是寶寶的抓周百日，歡迎告訴我你的想法。</p>
-    <a class="btn btn-fill" href="mailto:lilian091719@gmail.com">寄信給我</a>
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">開始合作</h2>
+    <p class="contact-sub">無論是形象攝影、品牌影像還是特殊企劃，歡迎告訴我你的想法，我們一起讓畫面說話。</p>
+    <a class="btn btn-primary" href="mailto:lilian091719@gmail.com">寄信給我</a>
     <div class="contact-links">
-      <a class="c-link" href="https://www.instagram.com/our_memories_studio" target="_blank">@our_memories_studio</a>
-      <a class="c-link" href="https://www.instagram.com/chou_yun.0917" target="_blank">@chou_yun.0917</a>
+      <a class="contact-link" href="https://www.instagram.com/our_memories_studio" target="_blank">@our_memories_studio</a>
+      <a class="contact-link" href="https://www.instagram.com/chou_yun.0917" target="_blank">@chou_yun.0917</a>
     </div>
   </section>
 
@@ -647,171 +712,44 @@
     <span class="footer-copy">© 2026 Most Imagine Studio. All rights reserved.</span>
   </footer>
 
-  <!-- MOBILE BOTTOM NAV -->
-  <nav class="bottom-nav">
-    <div class="bn-inner">
-      <a class="bn-item" href="#hero">
-        <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12L12 3l9 9v9h-6v-5H9v5H3v-9z"/></svg>
-        首頁
-      </a>
-      <a class="bn-item" href="#portfolio">
-        <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-        作品集
-      </a>
-      <a class="bn-item" href="#about">
-        <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        關於
-      </a>
-      <a class="bn-item" href="#contact">
-        <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 7 9-7"/></svg>
-        聯絡
-      </a>
-    </div>
-  </nav>
-
-  <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox">
-    <button class="lb-close">✕</button>
-    <button class="lb-prev">&#8249;</button>
-    <button class="lb-next">&#8250;</button>
-    <div class="lb-wrap"><img id="lb-img" src="" alt=""></div>
-    <div id="lb-counter" class="lb-counter"></div>
-  </div>
-
   <script>
-    // ════════════════════════════════════════════════════════════════
-    //  照片設定 ── 在這裡新增、更換、刪除照片
-    //
-    //  規則：
-    //  ● 每個分類，陣列裡「第 1 張」= 頁面左格大圖
-    //               陣列裡「第 2 張」= 頁面右格大圖
-    //  ● 全部照片都會出現在「查看更多照片」燈箱裡
-    //  ● 新增照片步驟：
-    //      1. 用 sips 壓縮後放進 portfolio/images/ 資料夾
-    //      2. 在下方陣列加一行 'images/你的檔名.jpg',
-    //      3. 存檔 → 推上 GitHub → Netlify 自動更新
-    // ════════════════════════════════════════════════════════════════
-    const PHOTOS = {
-
-      portrait: [
-        'images/portrait_05.jpg',   // ← 左格大圖
-        'images/portrait_06.jpg',   // ← 右格大圖
-        'images/portrait_01.jpg',
-        'images/portrait_02.jpg',
-        'images/portrait_03.jpg',
-        'images/portrait_04.jpg',
-      ],
-
-      baby: [
-        'images/baby_04.jpg',       // ← 左格大圖
-        'images/baby_01.jpg',       // ← 右格大圖
-        'images/doudou/YUN05946.jpg',
-        'images/doudou/YUN06034.jpg',
-        'images/doudou/YUN06042.jpg',
-        'images/doudou/YUN06049.jpg',
-        'images/doudou/YUN06121.jpg',
-        'images/doudou/YUN06231.jpg',
-        'images/baby_02.jpg',
-        'images/baby_03.jpg',
-      ],
-
-      event: [
-        'images/event_asus_01.jpg',     // ← 左格大圖
-        'images/event_tekscono_01.jpg', // ← 右格大圖
-        'images/event_asus_02.jpg',
-        'images/event_tekscono_02.jpg',
-        'images/event_cycle_01.jpg',
-        'images/event_cycle_02.jpg',
-        'images/event_01.jpg',
-        'images/event_02.jpg',
-      ],
-
-      travel: [
-        'images/travel_japan.jpg',  // ← 左格大圖
-        'images/jeju/lia02861.jpg', // ← 右格大圖
-        'images/jeju/lia02822.jpg',
-        'images/jeju/lia02826.jpg',
-        'images/jeju/lia02832.jpg',
-        'images/jeju/lia03438.jpg',
-        'images/jeju/lia03462.jpg',
-        'images/jeju/lia03466.jpg',
-        'images/jeju/lia03467.jpg',
-        'images/jeju/lia03479.jpg',
-        'images/jeju/lia03494.jpg',
-        'images/jeju/lia03632.jpg',
-        'images/jeju/lia03638.jpg',
-        'images/jeju/yun01668.jpg',
-        'images/jeju/yun01741.jpg',
-        'images/jeju/yun08369.jpg',
-        'images/jeju/yun08447.jpg',
-        'images/jeju/yun08504.jpg',
-        'images/hero.jpg',
-      ],
-
-      pet: [
-        'images/personal_01.jpg',   // ← 左格大圖
-        'images/pet_01.jpg',        // ← 右格大圖
-      ],
-
-      wedding: [
-        'images/wedding_01.jpg',    // ← 左格大圖
-        'images/baby_03.jpg',       // ← 右格大圖
-        'images/baby_02.jpg',
-      ],
-
-    }
-    // ════════════════════════════════════════════════════════════════
-
-    // ════════════════════════════════════════════════════════════════
-    //  完整作品連結設定 ── 填入外部連結（Google Drive / IG / 其他）
-    //  留空字串 '' 代表不顯示連結
-    // ════════════════════════════════════════════════════════════════
-    const LINKS = {
-      portrait: '',
-      baby:     '',
-      event:    'https://www.notion.so/YUN-350aa597cce680fa9e20f79e34dd0381',
-      travel:   '',
-      pet:      '',
-      wedding:  '',
-    }
-    // ════════════════════════════════════════════════════════════════
-
-    // 自動把上面的設定套到頁面上
-    document.querySelectorAll('.work-section[data-cat]').forEach(section => {
-      const cat = section.dataset.cat
-      const photos = PHOTOS[cat] || []
-      section.querySelectorAll('.work-photo').forEach((img, i) => {
-        img.src = photos[i] || ''
-        img.dataset.images = JSON.stringify(photos)
-        img.dataset.index = i
-      })
-      const btn = section.querySelector('.see-more')
-      if (btn) btn.dataset.images = JSON.stringify(photos)
-
-      const linkEl = section.querySelector('.work-ext-link')
-      if (linkEl) {
-        const url = LINKS[cat]
-        if (url) { linkEl.href = url; linkEl.style.display = 'inline-flex' }
-        else { linkEl.style.display = 'none' }
-      }
+    // Nav scroll
+    const nav = document.getElementById('nav')
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60)
     })
 
-    // Header
-    const hdr = document.getElementById('hdr')
-    window.addEventListener('scroll', () => {
-      hdr.classList.toggle('scrolled', window.scrollY > 80)
+    // Portfolio filter
+    const filterBtns = document.querySelectorAll('.filter-btn')
+    const cards = document.querySelectorAll('.portfolio-card')
+    const albums = document.querySelectorAll('.photo-album')
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'))
+        btn.classList.add('active')
+        const filter = btn.dataset.filter
+        cards.forEach(card => {
+          const match = filter === 'all' || card.dataset.cat === filter
+          card.classList.toggle('hidden', !match)
+        })
+        albums.forEach(album => {
+          const match = filter === 'all' || album.dataset.cat === filter
+          album.classList.toggle('hidden', !match)
+        })
+      })
     })
 
     // Lightbox
     const lb = document.getElementById('lightbox')
     const lbImg = document.getElementById('lb-img')
-    const lbCtr = document.getElementById('lb-counter')
-    let lbList = [], lbIdx = 0
+    const lbCounter = document.getElementById('lb-counter')
+    let lbImages = [], lbIndex = 0
 
-    function lbOpen(imgs, idx) {
-      lbList = imgs; lbIdx = idx
-      lbImg.src = lbList[lbIdx]
-      lbCtr.textContent = lbList.length > 1 ? `${lbIdx + 1} / ${lbList.length}` : ''
+    function lbOpen(images, index) {
+      lbImages = images; lbIndex = index
+      lbImg.src = lbImages[lbIndex]
+      lbCounter.textContent = `${lbIndex + 1} / ${lbImages.length}`
       lb.classList.add('open')
       document.body.style.overflow = 'hidden'
     }
@@ -819,27 +757,25 @@
       lb.classList.remove('open')
       document.body.style.overflow = ''
     }
-    function lbStep(d) {
-      lbIdx = (lbIdx + d + lbList.length) % lbList.length
-      lbImg.src = lbList[lbIdx]
-      lbCtr.textContent = `${lbIdx + 1} / ${lbList.length}`
+    function lbStep(dir) {
+      lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length
+      lbImg.src = lbImages[lbIndex]
+      lbCounter.textContent = `${lbIndex + 1} / ${lbImages.length}`
     }
 
-    document.querySelectorAll('.work-photo').forEach(img => {
-      img.addEventListener('click', () => {
-        lbOpen(JSON.parse(img.dataset.images), parseInt(img.dataset.index) || 0)
-      })
-    })
-    document.querySelectorAll('.see-more').forEach(btn => {
-      btn.addEventListener('click', () => {
-        lbOpen(JSON.parse(btn.dataset.images), 0)
+    document.querySelectorAll('.album-grid').forEach(grid => {
+      const images = JSON.parse(grid.dataset.images)
+      grid.querySelectorAll('.album-thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          lbOpen(images, parseInt(thumb.dataset.index))
+        })
       })
     })
 
     document.querySelector('.lb-close').addEventListener('click', lbClose)
     document.querySelector('.lb-prev').addEventListener('click', e => { e.stopPropagation(); lbStep(-1) })
     document.querySelector('.lb-next').addEventListener('click', e => { e.stopPropagation(); lbStep(1) })
-    lb.addEventListener('click', e => { if (e.target === lb) lbClose() })
+    lb.addEventListener('click', e => { if (e.target === lb || e.target === lbImg) lbClose() })
     document.addEventListener('keydown', e => {
       if (!lb.classList.contains('open')) return
       if (e.key === 'Escape') lbClose()
