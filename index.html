@@ -263,10 +263,13 @@
       max-width: 1200px; margin: 0 auto; padding: 0 60px;
       display: flex; align-items: flex-start; gap: 0;
     }
+    /* 偶數段：照片在左、文字在右 */
+    .work-inner.flip { flex-direction: row-reverse; }
     .work-left {
       width: 40%; flex-shrink: 0;
       padding-right: 80px; padding-top: 12px;
     }
+    .work-inner.flip .work-left { padding-right: 0; padding-left: 80px; }
     .work-eyebrow {
       font-size: 10px; letter-spacing: 0.42em;
       color: var(--morandi); margin-bottom: 16px;
@@ -562,7 +565,7 @@
 
   <!-- 活動紀錄 -->
   <section class="work-section" id="s-event" data-cat="event">
-    <div class="work-inner">
+    <div class="work-inner flip">
       <div class="work-left">
         <p class="work-eyebrow">02 · EVENT PHOTOGRAPHY</p>
         <h2 class="work-title">活動紀錄</h2>
@@ -604,7 +607,7 @@
 
   <!-- 人物形象 -->
   <section class="work-section" id="s-portrait" data-cat="portrait">
-    <div class="work-inner">
+    <div class="work-inner flip">
       <div class="work-left">
         <p class="work-eyebrow">04 · PORTRAIT PHOTOGRAPHY</p>
         <h2 class="work-title">人物形象</h2>
