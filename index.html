@@ -3,485 +3,404 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>周筠 YUN — 形象攝影 × 燈光設計</title>
+  <title>周筠 YUN — 攝影師 × 燈光設計師</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --beige:      #F5F0E8;
-      --beige-dark: #EDE8DB;
-      --beige-card: #E8E2D5;
-      --gold:       #C9A84C;
-      --gold-light: #D4B96A;
-      --text:       #2C2416;
-      --text-muted: #7A6B52;
-      --border:     rgba(201,168,76,0.35);
-      --morandi:    #8BA5B3;
+      --bg:      #F8F5F0;
+      --bg-alt:  #F0EDE8;
+      --dark:    #1A2620;
+      --dark2:   #141E1B;
+      --text:    #1C1C1C;
+      --muted:   #7A7265;
+      --morandi: #8BA5B3;
+      --gold:    #C9A84C;
+      --border:  rgba(139,165,179,0.18);
+      --cream:   #E8E4DC;
     }
 
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Noto Sans TC', sans-serif;
-      background: var(--beige);
-      color: var(--text);
-      line-height: 1.7;
-    }
+    body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
 
     /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 60px;
+      padding: 0 60px; height: 64px;
       background: transparent;
       transition: background 0.4s, border-bottom 0.4s;
     }
-    nav.scrolled {
-      background: var(--beige);
-      border-bottom: 1px solid var(--gold);
+    #nav.scrolled {
+      background: rgba(20,30,27,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(139,165,179,0.12);
     }
     .nav-logo {
+      display: flex; align-items: baseline; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-zh {
       font-family: 'Noto Serif TC', serif;
-      font-size: 18px;
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      color: var(--text);
-      text-decoration: none;
+      font-size: 16px; font-weight: 400; letter-spacing: 0.12em;
+      color: var(--cream);
     }
-    .nav-logo span {
+    .nav-logo-en {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 22px;
+      font-style: italic; font-size: 20px; font-weight: 300; letter-spacing: 0.18em;
       color: var(--morandi);
-      margin-left: 4px;
     }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a {
-      font-size: 14px;
-      letter-spacing: 0.12em;
-      color: var(--text);
-      text-decoration: none;
-      position: relative;
-      padding-bottom: 3px;
+    .nav-menu { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-item { position: relative; }
+    .nav-item > a {
+      font-size: 12px; letter-spacing: 0.1em;
+      color: rgba(232,228,220,0.65); text-decoration: none;
+      transition: color 0.22s; padding: 22px 0; display: block;
     }
-    .nav-links a::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0;
-      width: 0; height: 1.5px;
-      background: var(--gold);
-      transition: width 0.3s;
+    .nav-item > a:hover { color: var(--cream); }
+    .has-drop > a::after { content: ' ▾'; font-size: 8px; opacity: 0.6; }
+
+    .nav-dropdown {
+      position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: var(--dark2);
+      border: 1px solid rgba(139,165,179,0.12);
+      border-radius: 3px; min-width: 200px; padding: 8px 0;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+      white-space: nowrap;
     }
-    .nav-links a:hover::after { width: 100%; }
+    .has-drop:hover .nav-dropdown {
+      opacity: 1; visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown a {
+      display: block; padding: 10px 22px;
+      font-size: 12px; letter-spacing: 0.06em;
+      color: rgba(232,228,220,0.55); text-decoration: none;
+      transition: color 0.18s, background 0.18s;
+    }
+    .nav-dropdown a:hover { color: var(--cream); background: rgba(139,165,179,0.08); }
 
     /* ── HERO ── */
     #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 120px 40px 80px;
-      position: relative;
-      background-image: url('images/hero.jpg');
-      background-size: cover;
-      background-position: center top;
+      height: 100vh; position: relative;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; background: var(--dark);
     }
-    #hero::before {
-      content: '';
+    .hero-bg {
       position: absolute; inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(245,240,232,0.55) 0%,
-        rgba(245,240,232,0.75) 50%,
-        rgba(245,240,232,0.92) 100%
-      );
+      background-image: url('images/hero.jpg');
+      background-size: cover; background-position: center top;
+      opacity: 0.25;
     }
-    #hero > * { position: relative; z-index: 1; }
+    .hero-content { position: relative; z-index: 1; text-align: center; }
+
     .hero-tag {
-      font-size: 12px;
-      letter-spacing: 0.3em;
-      color: var(--morandi);
-      margin-bottom: 28px;
+      font-size: 11px; letter-spacing: 0.45em;
+      color: var(--morandi); margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.3s;
     }
-    .hero-name {
+
+    /* Animated lines */
+    .hero-lines {
+      position: relative; height: 110px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-line {
+      position: absolute;
       font-family: 'Noto Serif TC', serif;
-      font-size: clamp(56px, 8vw, 96px);
-      font-weight: 400;
-      line-height: 1.1;
-      margin-bottom: 8px;
-      letter-spacing: 0.04em;
+      font-size: clamp(30px, 5vw, 58px);
+      font-weight: 300; letter-spacing: 0.24em;
+      color: var(--cream); opacity: 0;
+    }
+    .hero-line-1 { animation: showHide 2.8s ease forwards 0.8s; }
+    .hero-line-2 { animation: showHide 2.8s ease forwards 3.9s; }
+    .hero-line-3 { animation: showStay 1.2s ease forwards 7s; }
+
+    .hero-name {
+      display: flex; align-items: baseline; justify-content: center; gap: 14px;
+      margin-top: 14px;
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards 8.4s;
+    }
+    .hero-name-zh {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 16px; font-weight: 300; letter-spacing: 0.38em;
+      color: rgba(232,228,220,0.5);
     }
     .hero-name-en {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: clamp(40px, 6vw, 72px);
-      font-weight: 300;
+      font-style: italic; font-size: 19px; font-weight: 300; letter-spacing: 0.32em;
       color: var(--morandi);
-      display: block;
     }
-    .hero-sub {
-      font-family: 'Noto Serif TC', serif;
-      font-size: 18px;
-      font-weight: 300;
-      color: var(--text-muted);
-      margin-top: 20px;
-      margin-bottom: 48px;
-      letter-spacing: 0.05em;
+
+    .hero-btns {
+      display: flex; gap: 16px; justify-content: center;
+      margin-top: 52px;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 9.2s;
     }
-    .hero-btns { display: flex; gap: 16px; justify-content: center; }
     .btn {
-      padding: 13px 32px;
-      font-size: 13px;
-      letter-spacing: 0.15em;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: all 0.3s;
-      cursor: pointer;
-      border: 1.5px solid var(--gold);
+      padding: 12px 32px; font-size: 12px; letter-spacing: 0.16em;
+      text-decoration: none; cursor: pointer; border-radius: 2px;
+      transition: all 0.28s; font-family: 'Noto Sans TC', sans-serif;
+      display: inline-block;
     }
-    .btn-primary {
-      background: var(--gold);
-      color: #fff;
-    }
-    .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-    }
-    .btn-outline:hover { background: var(--gold); color: #fff; }
+    .btn-fill { background: var(--morandi); color: #fff; border: 1px solid var(--morandi); }
+    .btn-fill:hover { background: #7A96A8; border-color: #7A96A8; }
+    .btn-out { background: transparent; color: var(--cream); border: 1px solid rgba(232,228,220,0.35); }
+    .btn-out:hover { border-color: var(--cream); }
 
-    /* 分隔線 */
-    .divider {
-      width: 60px; height: 1px;
-      background: var(--gold);
-      margin: 0 auto;
+    .hero-scroll {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      opacity: 0; animation: fadeUp 1s ease forwards 10s;
+    }
+    .hero-scroll span { font-size: 9px; letter-spacing: 0.4em; color: rgba(232,228,220,0.28); }
+    .scroll-line {
+      width: 1px; height: 44px;
+      background: linear-gradient(to bottom, rgba(139,165,179,0.45), transparent);
+      animation: scrollPulse 2.2s ease infinite;
     }
 
-    /* ── SECTION COMMON ── */
-    section { padding: 100px 60px; }
-    .section-label {
-      font-size: 11px;
-      letter-spacing: 0.35em;
-      color: var(--morandi);
-      text-transform: uppercase;
-      margin-bottom: 12px;
+    @keyframes showHide {
+      0%   { opacity: 0; transform: translateY(16px); }
+      15%  { opacity: 1; transform: translateY(0); }
+      72%  { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-10px); }
+    }
+    @keyframes showStay {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.9; }
+    }
+
+    /* ── STORY ── */
+    #story {
+      background: var(--dark);
+      padding: 120px 60px;
       text-align: center;
     }
-    .section-title {
+    .story-quote {
       font-family: 'Noto Serif TC', serif;
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: 400;
-      text-align: center;
-      margin-bottom: 60px;
-      letter-spacing: 0.05em;
+      font-size: clamp(17px, 2.2vw, 26px);
+      font-weight: 300; line-height: 2.1; letter-spacing: 0.06em;
+      color: rgba(232,228,220,0.65);
+      max-width: 720px; margin: 0 auto 48px;
     }
+    .story-quote em { font-style: normal; color: var(--morandi); }
+    .story-link {
+      font-size: 11px; letter-spacing: 0.24em;
+      color: var(--morandi); text-decoration: none;
+      border-bottom: 1px solid rgba(139,165,179,0.35);
+      padding-bottom: 3px;
+      transition: color 0.22s, border-color 0.22s;
+    }
+    .story-link:hover { color: var(--cream); border-color: rgba(232,228,220,0.4); }
 
-    /* ── PORTFOLIO ── */
-    #portfolio { background: var(--beige); }
-
-    .filter-bar {
-      display: flex; gap: 0; justify-content: center;
-      margin-bottom: 56px;
-      border-bottom: 1px solid var(--border);
+    /* ── SERVICES ── */
+    #services { background: var(--bg); padding: 100px 60px; }
+    .section-eyebrow {
+      text-align: center; font-size: 11px; letter-spacing: 0.42em;
+      color: var(--morandi); margin-bottom: 56px;
     }
-    .filter-btn {
-      padding: 12px 28px;
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      background: none;
-      border: none;
-      cursor: pointer;
-      position: relative;
-      transition: color 0.3s;
+    .services-grid {
+      display: grid; grid-template-columns: repeat(6, 1fr);
+      gap: 3px; max-width: 1280px; margin: 0 auto;
     }
-    .filter-btn::after {
-      content: '';
-      position: absolute; bottom: -1px; left: 0; right: 0;
-      height: 2px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transition: transform 0.3s;
+    .service-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 2/3; text-decoration: none; display: block;
     }
-    .filter-btn.active { color: var(--text); }
-    .filter-btn.active::after { transform: scaleX(1); }
-    .filter-btn:hover { color: var(--text); }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .portfolio-card {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid transparent;
-      transition: border-color 0.3s, transform 0.3s;
-      cursor: pointer;
-      background: var(--beige-card);
-    }
-    .portfolio-card:hover {
-      border-color: var(--gold);
-      transform: scale(1.02);
-    }
-    .portfolio-card.hidden { display: none; }
-
-    .card-img {
-      width: 100%; aspect-ratio: 3/4;
-      background: var(--beige-dark);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
-    }
-    .card-img img {
+    .sc-bg {
       width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
+      background-size: cover; background-position: center;
+      background-color: var(--bg-alt);
+      transition: transform 0.6s ease;
     }
-    /* placeholder 樣式（還沒放圖時） */
-    .card-img.placeholder {
-      background: linear-gradient(135deg, var(--beige-dark) 0%, var(--beige-card) 100%);
+    .service-card:hover .sc-bg { transform: scale(1.06); }
+    .sc-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,30,27,0.88) 0%, rgba(20,30,27,0.08) 55%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end;
+      padding: 24px 14px; text-align: center;
     }
-    .card-img.placeholder::after {
-      content: '+';
-      font-size: 32px;
-      color: var(--gold);
-      opacity: 0.4;
-    }
-
-    .card-info {
-      padding: 16px 18px;
-    }
-    .card-title {
+    .sc-title {
       font-family: 'Noto Serif TC', serif;
-      font-size: 15px;
-      font-weight: 400;
-      margin-bottom: 4px;
+      font-size: 14px; font-weight: 400; letter-spacing: 0.14em;
+      color: var(--cream); margin-bottom: 6px;
     }
-    .card-cat {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: var(--gold);
+    .sc-sub {
+      font-size: 10px; letter-spacing: 0.1em;
+      color: var(--morandi);
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.3s, transform 0.3s;
     }
+    .service-card:hover .sc-sub { opacity: 1; transform: translateY(0); }
+
+    /* ── WORK SECTIONS ── */
+    .work-section {
+      border-top: 1px solid var(--border);
+      padding: 96px 0;
+    }
+    .work-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 60px;
+      display: flex; align-items: flex-start; gap: 0;
+    }
+    .work-left {
+      width: 40%; flex-shrink: 0;
+      padding-right: 80px; padding-top: 12px;
+    }
+    .work-eyebrow {
+      font-size: 10px; letter-spacing: 0.42em;
+      color: var(--morandi); margin-bottom: 16px;
+    }
+    .work-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(26px, 3vw, 38px); font-weight: 300;
+      letter-spacing: 0.06em; color: var(--text);
+      margin-bottom: 24px; line-height: 1.4;
+    }
+    .work-story {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 14px; font-weight: 300;
+      color: var(--muted); line-height: 2.1; letter-spacing: 0.04em;
+      border-left: 2px solid var(--morandi);
+      padding-left: 18px; margin-bottom: 28px;
+    }
+    .work-subs { list-style: none; margin-bottom: 28px; }
+    .work-subs li {
+      font-size: 12px; letter-spacing: 0.08em; color: var(--muted);
+      padding: 7px 0; border-bottom: 1px solid var(--border);
+    }
+    .work-subs li::before { content: '— '; color: var(--morandi); }
+    .btn-ghost {
+      display: inline-block; padding: 10px 26px;
+      font-size: 11px; letter-spacing: 0.16em;
+      color: var(--text); background: transparent; cursor: pointer;
+      border: 1px solid var(--border); border-radius: 30px;
+      transition: all 0.26s; font-family: 'Noto Sans TC', sans-serif;
+    }
+    .btn-ghost:hover { border-color: var(--morandi); color: var(--morandi); }
+
+    .work-right {
+      flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+    }
+    .work-photo {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      display: block; cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .work-photo:hover { opacity: 0.84; }
 
     /* ── ABOUT ── */
-    #about { background: var(--beige-dark); }
+    #about { background: var(--bg-alt); padding: 120px 60px; }
     .about-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-      max-width: 1000px;
-      margin: 0 auto;
+      max-width: 1080px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      gap: 80px; align-items: center;
     }
-    .about-photo {
-      width: 100%; aspect-ratio: 3/4;
-      background: var(--beige-card);
-      border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
-    }
+    .about-photo { width: 100%; aspect-ratio: 3/4; overflow: hidden; }
     .about-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .about-photo.placeholder::after {
-      content: '你的照片';
-      font-size: 14px;
-      color: var(--gold);
-      opacity: 0.5;
-      letter-spacing: 0.1em;
-    }
-    .about-text .label {
-      font-size: 11px;
-      letter-spacing: 0.35em;
-      color: var(--gold);
-      margin-bottom: 16px;
+    .about-text .eyebrow {
+      font-size: 11px; letter-spacing: 0.4em;
+      color: var(--morandi); margin-bottom: 20px;
     }
     .about-text h2 {
       font-family: 'Noto Serif TC', serif;
-      font-size: 32px;
-      font-weight: 400;
-      margin-bottom: 24px;
-      letter-spacing: 0.04em;
+      font-size: 28px; font-weight: 300; letter-spacing: 0.06em;
+      margin-bottom: 24px; line-height: 1.6;
     }
-    .about-text p {
-      font-size: 15px;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-      line-height: 1.9;
-    }
-    .about-stats {
-      display: flex; gap: 40px;
-      margin-top: 36px;
-      padding-top: 36px;
+    .about-text h2 strong { font-weight: 500; }
+    .about-text p { font-size: 14px; color: var(--muted); line-height: 2.1; margin-bottom: 14px; }
+    .about-list {
+      margin-top: 28px; padding-top: 24px;
       border-top: 1px solid var(--border);
+      list-style: none;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
     }
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 0.1em;
-      margin-top: 4px;
-    }
+    .about-list li { font-size: 12px; letter-spacing: 0.05em; color: var(--muted); }
+    .about-list li::before { content: '· '; color: var(--morandi); }
 
-    /* ── CONTACT ── */
-    #contact { text-align: center; }
-    .contact-sub {
-      font-size: 15px;
-      color: var(--text-muted);
-      margin-bottom: 48px;
-      max-width: 480px;
-      margin-left: auto; margin-right: auto;
+    /* ── CTA ── */
+    #cta { background: var(--dark); padding: 120px 60px; text-align: center; }
+    .cta-eyebrow {
+      font-size: 11px; letter-spacing: 0.4em;
+      color: var(--morandi); margin-bottom: 28px;
     }
-    .contact-links {
-      display: flex; gap: 20px; justify-content: center;
-      margin-top: 40px;
-      flex-wrap: wrap;
+    .cta-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(22px, 3vw, 38px); font-weight: 300;
+      letter-spacing: 0.08em; color: rgba(232,228,220,0.88);
+      margin-bottom: 48px; line-height: 1.7;
     }
-    .contact-link {
-      font-size: 13px;
-      letter-spacing: 0.15em;
-      color: var(--text);
-      text-decoration: none;
-      border-bottom: 1px solid var(--gold);
-      padding-bottom: 2px;
-      transition: color 0.3s;
-    }
-    .contact-link:hover { color: var(--gold); }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; }
 
     /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--gold);
-      padding: 28px 60px;
-      display: flex; justify-content: space-between; align-items: center;
+    #footer {
+      background: var(--dark2); padding: 32px 60px;
+      text-align: center;
     }
-    .footer-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 16px;
-      color: var(--gold);
+    #footer p {
+      font-size: 11px; letter-spacing: 0.2em;
+      color: rgba(232,228,220,0.22);
     }
-    .footer-copy {
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
-    }
-
-    /* ── GALLERY CARD ── */
-    .gallery-card { position: relative; }
-    .card-gallery-hint {
-      position: absolute; bottom: 56px; right: 12px;
-      font-size: 11px; letter-spacing: 0.1em;
-      color: var(--gold);
-      background: rgba(245,240,232,0.85);
-      padding: 4px 10px;
-      border: 1px solid var(--gold);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .gallery-card:hover .card-gallery-hint { opacity: 1; }
 
     /* ── LIGHTBOX ── */
-    .lightbox {
-      display: none;
-      position: fixed; inset: 0; z-index: 9999;
-      background: rgba(30,24,16,0.95);
+    #lightbox {
+      display: none; position: fixed; inset: 0;
+      background: rgba(20,30,27,0.96); z-index: 9999;
       align-items: center; justify-content: center;
     }
-    .lightbox.open { display: flex; }
-    .lb-img-wrap {
-      max-width: 90vw; max-height: 88vh;
-      display: flex; align-items: center; justify-content: center;
-    }
-    #lb-img {
-      max-width: 100%; max-height: 88vh;
-      object-fit: contain;
-      border: 1px solid rgba(201,168,76,0.3);
-    }
+    #lightbox.open { display: flex; }
+    #lb-img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
     .lb-close {
       position: fixed; top: 24px; right: 32px;
       background: none; border: none;
-      color: var(--gold); font-size: 28px;
-      cursor: pointer; z-index: 10000;
+      color: rgba(232,228,220,0.5); font-size: 28px; cursor: pointer;
+      transition: color 0.2s;
     }
+    .lb-close:hover { color: var(--cream); }
     .lb-prev, .lb-next {
       position: fixed; top: 50%; transform: translateY(-50%);
       background: none; border: none;
-      color: var(--gold); font-size: 56px;
-      cursor: pointer; z-index: 10000;
-      padding: 0 20px; line-height: 1;
-      opacity: 0.7; transition: opacity 0.2s;
+      color: rgba(232,228,220,0.4); font-size: 52px; cursor: pointer;
+      transition: color 0.2s;
     }
-    .lb-prev:hover, .lb-next:hover { opacity: 1; }
-    .lb-prev { left: 10px; }
-    .lb-next { right: 10px; }
-    .lb-counter {
-      position: fixed; bottom: 24px; left: 50%;
-      transform: translateX(-50%);
-      font-size: 13px; color: var(--gold);
-      letter-spacing: 0.15em;
+    .lb-prev { left: 24px; }
+    .lb-next { right: 24px; }
+    .lb-prev:hover, .lb-next:hover { color: var(--cream); }
+    #lb-counter {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      font-size: 11px; letter-spacing: 0.22em;
+      color: rgba(232,228,220,0.35);
     }
 
-    /* ── PHOTO ALBUM ── */
-    .photo-album {
-      grid-column: 1 / -1;
-      padding: 28px 32px 32px;
-      background: var(--beige-card);
-      border: 1px solid var(--border);
-    }
-    .photo-album.hidden { display: none; }
-    .album-header {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      margin-bottom: 20px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border);
-    }
-    .album-title {
-      font-family: 'Noto Serif TC', serif;
-      font-size: 16px;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-      color: var(--text);
-    }
-    .album-meta {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-    }
-    .album-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 6px;
-    }
-    .album-thumb {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      cursor: pointer;
-      display: block;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .album-thumb:hover { opacity: 0.82; transform: scale(1.02); }
-
-    /* ── RWD ── */
-    @media (max-width: 768px) {
-      nav { padding: 16px 24px; }
-      .nav-links { gap: 20px; }
-      section { padding: 80px 24px; }
-      .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      #nav { padding: 0 24px; }
+      .nav-menu { display: none; }
+      #story, #cta { padding: 80px 28px; }
+      #services { padding: 80px 28px; }
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+      .work-inner { flex-direction: column; padding: 0 28px; }
+      .work-left { width: 100%; padding-right: 0; margin-bottom: 28px; }
+      #about { padding: 80px 28px; }
       .about-inner { grid-template-columns: 1fr; gap: 40px; }
-      footer { flex-direction: column; gap: 10px; text-align: center; }
     }
-    @media (max-width: 480px) {
-      .portfolio-grid { grid-template-columns: 1fr; }
-      .filter-btn { padding: 10px 16px; font-size: 12px; }
+    @media (max-width: 560px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -489,288 +408,389 @@
 
   <!-- NAV -->
   <nav id="nav">
-    <a class="nav-logo" href="#">周筠<span>YUN</span></a>
-    <ul class="nav-links">
-      <li><a href="#portfolio">作品集</a></li>
-      <li><a href="#about">關於</a></li>
-      <li><a href="#contact">聯絡</a></li>
+    <a class="nav-logo" href="#">
+      <span class="nav-logo-zh">周筠</span>
+      <span class="nav-logo-en">YUN</span>
+    </a>
+    <ul class="nav-menu">
+      <li class="nav-item has-drop">
+        <a href="#s-baby">抓周攝影</a>
+        <ul class="nav-dropdown">
+          <li><a href="#s-baby">到府抓周攝影</a></li>
+        </ul>
+      </li>
+      <li class="nav-item has-drop">
+        <a href="#s-event">活動紀錄</a>
+        <ul class="nav-dropdown">
+          <li><a href="#s-event">商業公關</a></li>
+          <li><a href="#s-event">溫馨派對</a></li>
+          <li><a href="#s-event">舞台藝文</a></li>
+          <li><a href="#s-event">尾牙婚禮</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a href="#s-dance">舞蹈</a></li>
+      <li class="nav-item has-drop">
+        <a href="#s-portrait">人物形象</a>
+        <ul class="nav-dropdown">
+          <li><a href="#s-portrait">商務與專業形象</a></li>
+          <li><a href="#s-portrait">個人品牌與自媒體形象</a></li>
+          <li><a href="#s-portrait">藝術與表演者形象</a></li>
+        </ul>
+      </li>
+      <li class="nav-item has-drop">
+        <a href="#s-pet">寵物寫真</a>
+        <ul class="nav-dropdown">
+          <li><a href="#s-pet">棚拍精緻光影寫真</a></li>
+          <li><a href="#s-pet">居家溫馨生活紀錄（到府）</a></li>
+          <li><a href="#s-pet">戶外自然跑跳紀實</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="https://www.notion.so/2b3aa597cce680f080a9cc00b54402d2" target="_blank">燈光設計</a>
+      </li>
+      <li class="nav-item"><a href="#footer">聯絡</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
-    <p class="hero-tag">形象攝影 &times; 燈光設計 &times; 情感影像</p>
-    <h1 class="hero-name">
-      周筠
-      <span class="hero-name-en">YUN</span>
-    </h1>
-    <p class="hero-sub">我設計光，讓你在鏡頭前發光</p>
-    <div class="hero-btns">
-      <a class="btn btn-primary" href="#portfolio">看作品</a>
-      <a class="btn btn-outline" href="#contact">合作諮詢</a>
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-tag">PHOTOGRAPHER · LIGHTING DESIGNER</p>
+      <div class="hero-lines">
+        <div class="hero-line hero-line-1">我是舞蹈老師</div>
+        <div class="hero-line hero-line-2">我是工程師</div>
+        <div class="hero-line hero-line-3">我是攝影師</div>
+      </div>
+      <div class="hero-name">
+        <span class="hero-name-zh">周筠</span>
+        <span class="hero-name-en">YUN</span>
+      </div>
+      <div class="hero-btns">
+        <a class="btn btn-fill" href="#services">看作品</a>
+        <a class="btn btn-out" href="#footer">預約諮詢</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
     </div>
   </section>
 
-  <!-- PORTFOLIO -->
-  <section id="portfolio">
-    <p class="section-label">Portfolio</p>
-    <h2 class="section-title">作品集</h2>
+  <!-- STORY INTRO -->
+  <section id="story">
+    <p class="story-quote">
+      從<em>舞蹈教室</em>，走進攝影的世界——<br>
+      帶著 8 年溫柔的陪伴，和<em>工程師</em>的理性目光，<br>
+      我用鏡頭，說你說不出口的故事。
+    </p>
+    <a class="story-link" href="#about">認識我 →</a>
+  </section>
 
-    <div class="filter-bar">
-      <button class="filter-btn active" data-filter="all">全部</button>
-      <button class="filter-btn" data-filter="portrait">形象照</button>
-      <button class="filter-btn" data-filter="event">活動・商業</button>
-      <button class="filter-btn" data-filter="baby">抓周紀錄</button>
-      <button class="filter-btn" data-filter="mv">MV・影視</button>
-      <button class="filter-btn" data-filter="travel">寵物戶外寫真</button>
+  <!-- SERVICE CARDS -->
+  <section id="services">
+    <p class="section-eyebrow">SERVICES</p>
+    <div class="services-grid">
+      <a class="service-card" href="#s-baby">
+        <div class="sc-bg" style="background-image:url('images/baby_04.jpg')"></div>
+        <div class="sc-overlay">
+          <div class="sc-title">抓周攝影</div>
+          <div class="sc-sub">到府抓周攝影</div>
+        </div>
+      </a>
+      <a class="service-card" href="#s-event">
+        <div class="sc-bg" style="background-image:url('images/event_asus_01.jpg')"></div>
+        <div class="sc-overlay">
+          <div class="sc-title">活動紀錄</div>
+          <div class="sc-sub">商業 · 派對 · 舞台 · 尾牙</div>
+        </div>
+      </a>
+      <a class="service-card" href="#s-dance">
+        <div class="sc-bg" style="background-image:url('images/event_02.jpg')"></div>
+        <div class="sc-overlay">
+          <div class="sc-title">舞蹈紀錄</div>
+          <div class="sc-sub">展演 · 日常練習</div>
+        </div>
+      </a>
+      <a class="service-card" href="#s-portrait">
+        <div class="sc-bg" style="background-image:url('images/portrait_05.jpg')"></div>
+        <div class="sc-overlay">
+          <div class="sc-title">人物形象</div>
+          <div class="sc-sub">商務 · 品牌 · 藝術表演</div>
+        </div>
+      </a>
+      <a class="service-card" href="#s-pet">
+        <div class="sc-bg" style="background-image:url('images/pet_01.jpg')"></div>
+        <div class="sc-overlay">
+          <div class="sc-title">寵物寫真</div>
+          <div class="sc-sub">棚拍 · 居家 · 戶外</div>
+        </div>
+      </a>
+      <a class="service-card" href="https://www.notion.so/2b3aa597cce680f080a9cc00b54402d2" target="_blank">
+        <div class="sc-bg" style="background-image:url('images/mv_01.jpg')"></div>
+        <div class="sc-overlay">
+          <div class="sc-title">燈光設計</div>
+          <div class="sc-sub">動態燈光作品 →</div>
+        </div>
+      </a>
     </div>
+  </section>
 
-    <div class="portfolio-grid">
-      <div class="portfolio-card" data-cat="portrait">
-        <div class="card-img"><img src="images/portrait_01.jpg" alt="Janet 形象攝影"></div>
-        <div class="card-info">
-          <p class="card-title">Janet 形象攝影</p>
-          <p class="card-cat">形象照</p>
-        </div>
+  <!-- 抓周攝影 -->
+  <section class="work-section" id="s-baby" data-cat="baby">
+    <div class="work-inner">
+      <div class="work-left">
+        <p class="work-eyebrow">01 · BABY CEREMONY</p>
+        <h2 class="work-title">抓周攝影</h2>
+        <p class="work-story">「洞察孩子，是我當舞蹈老師 8 年中學到最重要的事。到府那天，我帶著同一份耐心，等那個只屬於你們的瞬間。」</p>
+        <ul class="work-subs">
+          <li>到府抓周攝影</li>
+        </ul>
+        <button class="btn-ghost">查看更多照片</button>
       </div>
-
-      <div class="portfolio-card" data-cat="portrait">
-        <div class="card-img"><img src="images/portrait_02.jpg" alt="個人品牌形象"></div>
-        <div class="card-info">
-          <p class="card-title">個人品牌形象</p>
-          <p class="card-cat">形象照</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card" data-cat="portrait">
-        <div class="card-img"><img src="images/portrait_03.jpg" alt="阿沁 藝人形象"></div>
-        <div class="card-info">
-          <p class="card-title">阿沁・藝人形象</p>
-          <p class="card-cat">形象照</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card" data-cat="portrait">
-        <div class="card-img"><img src="images/portrait_04.jpg" alt="新年服裝寫真"></div>
-        <div class="card-info">
-          <p class="card-title">新年服裝寫真</p>
-          <p class="card-cat">形象照</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card" data-cat="event">
-        <div class="card-img"><img src="images/event_01.jpg" alt="Lexus 品酒會"></div>
-        <div class="card-info">
-          <p class="card-title">Lexus 品酒會</p>
-          <p class="card-cat">活動・商業</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card" data-cat="event">
-        <div class="card-img"><img src="images/event_02.jpg" alt="ASUS 商業活動"></div>
-        <div class="card-info">
-          <p class="card-title">ASUS 商業活動</p>
-          <p class="card-cat">活動・商業</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card" data-cat="baby">
-        <div class="card-img"><img src="images/baby_01.jpg" alt="抓周紀錄"></div>
-        <div class="card-info">
-          <p class="card-title">抓周紀錄 Vol.1</p>
-          <p class="card-cat">抓周紀錄</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card" data-cat="baby">
-        <div class="card-img"><img src="images/baby_02.jpg" alt="抓周紀錄"></div>
-        <div class="card-info">
-          <p class="card-title">抓周紀錄 Vol.2</p>
-          <p class="card-cat">抓周紀錄</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card" data-cat="baby">
-        <div class="card-img"><img src="images/baby_03.jpg" alt="抓周紀錄"></div>
-        <div class="card-info">
-          <p class="card-title">抓周紀錄 Vol.3</p>
-          <p class="card-cat">抓周紀錄</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card" data-cat="mv">
-        <div class="card-img"><img src="images/mv_01.jpg" alt="阿沁夏那 MV"></div>
-        <div class="card-info">
-          <p class="card-title">阿沁 ✕ 夏那 MV</p>
-          <p class="card-cat">MV・影視</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card" data-cat="travel">
-        <div class="card-img"><img src="images/personal_01.jpg" alt="首爾寵物戶外"></div>
-        <div class="card-info">
-          <p class="card-title">首爾・寵物戶外</p>
-          <p class="card-cat">寵物戶外寫真</p>
-        </div>
-      </div>
-
-      <div class="photo-album" data-cat="travel">
-        <div class="album-header">
-          <span class="album-title">濟州島・旅遊影像</span>
-          <span class="album-meta">寵物戶外寫真 · 17 張</span>
-        </div>
-        <div class="album-grid" data-images='["images/jeju/lia02822.jpg","images/jeju/lia02826.jpg","images/jeju/lia02832.jpg","images/jeju/lia02861.jpg","images/jeju/lia03438.jpg","images/jeju/lia03462.jpg","images/jeju/lia03466.jpg","images/jeju/lia03467.jpg","images/jeju/lia03479.jpg","images/jeju/lia03494.jpg","images/jeju/lia03632.jpg","images/jeju/lia03638.jpg","images/jeju/yun01668.jpg","images/jeju/yun01741.jpg","images/jeju/yun08369.jpg","images/jeju/yun08447.jpg","images/jeju/yun08504.jpg"]'>
-          <img src="images/jeju/lia02822.jpg" alt="" class="album-thumb" data-index="0">
-          <img src="images/jeju/lia02826.jpg" alt="" class="album-thumb" data-index="1">
-          <img src="images/jeju/lia02832.jpg" alt="" class="album-thumb" data-index="2">
-          <img src="images/jeju/lia02861.jpg" alt="" class="album-thumb" data-index="3">
-          <img src="images/jeju/lia03438.jpg" alt="" class="album-thumb" data-index="4">
-          <img src="images/jeju/lia03462.jpg" alt="" class="album-thumb" data-index="5">
-          <img src="images/jeju/lia03466.jpg" alt="" class="album-thumb" data-index="6">
-          <img src="images/jeju/lia03467.jpg" alt="" class="album-thumb" data-index="7">
-          <img src="images/jeju/lia03479.jpg" alt="" class="album-thumb" data-index="8">
-          <img src="images/jeju/lia03494.jpg" alt="" class="album-thumb" data-index="9">
-          <img src="images/jeju/lia03632.jpg" alt="" class="album-thumb" data-index="10">
-          <img src="images/jeju/lia03638.jpg" alt="" class="album-thumb" data-index="11">
-          <img src="images/jeju/yun01668.jpg" alt="" class="album-thumb" data-index="12">
-          <img src="images/jeju/yun01741.jpg" alt="" class="album-thumb" data-index="13">
-          <img src="images/jeju/yun08369.jpg" alt="" class="album-thumb" data-index="14">
-          <img src="images/jeju/yun08447.jpg" alt="" class="album-thumb" data-index="15">
-          <img src="images/jeju/yun08504.jpg" alt="" class="album-thumb" data-index="16">
-        </div>
-      </div>
-
-      <div class="photo-album" data-cat="baby">
-        <div class="album-header">
-          <span class="album-title">豆豆抓周紀錄</span>
-          <span class="album-meta">抓周紀錄 · 6 張</span>
-        </div>
-        <div class="album-grid" data-images='["images/doudou/YUN05946.jpg","images/doudou/YUN06034.jpg","images/doudou/YUN06042.jpg","images/doudou/YUN06049.jpg","images/doudou/YUN06121.jpg","images/doudou/YUN06231.jpg"]'>
-          <img src="images/doudou/YUN05946.jpg" alt="" class="album-thumb" data-index="0">
-          <img src="images/doudou/YUN06034.jpg" alt="" class="album-thumb" data-index="1">
-          <img src="images/doudou/YUN06042.jpg" alt="" class="album-thumb" data-index="2">
-          <img src="images/doudou/YUN06049.jpg" alt="" class="album-thumb" data-index="3">
-          <img src="images/doudou/YUN06121.jpg" alt="" class="album-thumb" data-index="4">
-          <img src="images/doudou/YUN06231.jpg" alt="" class="album-thumb" data-index="5">
-        </div>
+      <div class="work-right">
+        <img class="work-photo" alt="抓周攝影">
+        <img class="work-photo" alt="抓周攝影">
       </div>
     </div>
   </section>
 
-  <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
-    <button class="lb-close" aria-label="關閉">✕</button>
-    <button class="lb-prev" aria-label="上一張">&#8249;</button>
-    <button class="lb-next" aria-label="下一張">&#8250;</button>
-    <div class="lb-img-wrap">
-      <img id="lb-img" src="" alt="">
+  <!-- 活動紀錄 -->
+  <section class="work-section" id="s-event" data-cat="event">
+    <div class="work-inner">
+      <div class="work-left">
+        <p class="work-eyebrow">02 · EVENT PHOTOGRAPHY</p>
+        <h2 class="work-title">活動紀錄</h2>
+        <p class="work-story">「工程師的眼睛——我會在雜亂的現場裡，找到值得留住的角度。」</p>
+        <ul class="work-subs">
+          <li>商業公關</li>
+          <li>溫馨派對</li>
+          <li>舞台藝文</li>
+          <li>尾牙婚禮</li>
+        </ul>
+        <button class="btn-ghost">查看更多照片</button>
+      </div>
+      <div class="work-right">
+        <img class="work-photo" alt="活動紀錄">
+        <img class="work-photo" alt="活動紀錄">
+      </div>
     </div>
-    <div class="lb-counter" id="lb-counter"></div>
-  </div>
+  </section>
+
+  <!-- 舞蹈紀錄 -->
+  <section class="work-section" id="s-dance" data-cat="dance">
+    <div class="work-inner">
+      <div class="work-left">
+        <p class="work-eyebrow">03 · DANCE PHOTOGRAPHY</p>
+        <h2 class="work-title">舞蹈紀錄</h2>
+        <p class="work-story">「我數過 8 年的拍子，站在台下看。我知道哪一刻，是真正屬於你的。」</p>
+        <ul class="work-subs">
+          <li>成果展演紀錄</li>
+          <li>日常練習紀實</li>
+        </ul>
+        <button class="btn-ghost">查看更多照片</button>
+      </div>
+      <div class="work-right">
+        <img class="work-photo" alt="舞蹈紀錄">
+        <img class="work-photo" alt="舞蹈紀錄">
+      </div>
+    </div>
+  </section>
+
+  <!-- 人物形象 -->
+  <section class="work-section" id="s-portrait" data-cat="portrait">
+    <div class="work-inner">
+      <div class="work-left">
+        <p class="work-eyebrow">04 · PORTRAIT PHOTOGRAPHY</p>
+        <h2 class="work-title">人物形象</h2>
+        <p class="work-story">「你有故事，我有鏡頭。剩下的，我們一起想。」</p>
+        <ul class="work-subs">
+          <li>商務與專業形象</li>
+          <li>個人品牌與自媒體形象</li>
+          <li>藝術與表演者形象</li>
+        </ul>
+        <button class="btn-ghost">查看更多照片</button>
+      </div>
+      <div class="work-right">
+        <img class="work-photo" alt="人物形象">
+        <img class="work-photo" alt="人物形象">
+      </div>
+    </div>
+  </section>
+
+  <!-- 寵物寫真 -->
+  <section class="work-section" id="s-pet" data-cat="pet">
+    <div class="work-inner">
+      <div class="work-left">
+        <p class="work-eyebrow">05 · PET PHOTOGRAPHY</p>
+        <h2 class="work-title">寵物寫真</h2>
+        <p class="work-story">「牠最放鬆的樣子。你們負責做自己，我負責抓住瞬間。」</p>
+        <ul class="work-subs">
+          <li>棚拍精緻光影寫真</li>
+          <li>居家溫馨生活紀錄（到府拍攝）</li>
+          <li>戶外自然跑跳紀實</li>
+        </ul>
+        <button class="btn-ghost">查看更多照片</button>
+      </div>
+      <div class="work-right">
+        <img class="work-photo" alt="寵物寫真">
+        <img class="work-photo" alt="寵物寫真">
+      </div>
+    </div>
+  </section>
 
   <!-- ABOUT -->
   <section id="about">
     <div class="about-inner">
-      <div class="about-photo placeholder"></div>
+      <div class="about-photo">
+        <img src="images/portrait_05.jpg" alt="周筠 YUN">
+      </div>
       <div class="about-text">
-        <p class="label">ABOUT</p>
+        <p class="eyebrow">ABOUT · 關於我</p>
         <h2>我叫<strong>周筠</strong>，來自高雄！</h2>
-        <p>現居台北市萬華，擅長捕捉情感的瞬間~!</p>
-        <p style="margin-top:20px;font-size:13px;letter-spacing:0.05em;color:var(--text-muted);">目前提供：</p>
-        <ul style="margin-top:10px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;">
-          <li style="font-size:13px;color:var(--text);letter-spacing:0.04em;">・平面／動態　活動紀錄</li>
-          <li style="font-size:13px;color:var(--text);letter-spacing:0.04em;">・平面／動態　商品攝影</li>
-          <li style="font-size:13px;color:var(--text);letter-spacing:0.04em;">・寵物形象照拍攝</li>
-          <li style="font-size:13px;color:var(--text);letter-spacing:0.04em;">・寶寶抓周紀錄拍攝</li>
-          <li style="font-size:13px;color:var(--text);letter-spacing:0.04em;">・企業形象照（人）</li>
-          <li style="font-size:13px;color:var(--text);letter-spacing:0.04em;">・企業形象影片</li>
+        <p>現居台北市萬華，擅長捕捉情感的瞬間。</p>
+        <p>一個帶著笑容具親和力的女生。我有 8 年陪伴不同世代學生的舞蹈教學經驗，讓我練就了能撫平難題的溫柔溝通力；而機械工程的背景，則給了我冷靜撇開情緒的理性思維。</p>
+        <p>現在身為全職攝影師的我，用積極的心態迎向挑戰，期待認識更多夥伴，為貴公司創造最高溫度的品牌價值！</p>
+        <ul class="about-list">
+          <li>平面／動態 活動紀錄</li>
+          <li>平面／動態 商品攝影</li>
+          <li>寵物形象照拍攝</li>
+          <li>寶寶抓周紀錄拍攝</li>
+          <li>企業形象照（人）</li>
+          <li>企業形象影片</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <p class="section-label">Contact</p>
-    <h2 class="section-title">開始合作</h2>
-    <p class="contact-sub">無論是形象攝影、品牌影像還是特殊企劃，歡迎告訴我你的想法，我們一起讓畫面說話。</p>
-    <a class="btn btn-primary" href="mailto:lilian091719@gmail.com">寄信給我</a>
-    <div class="contact-links">
-      <a class="contact-link" href="https://www.instagram.com/our_memories_studio" target="_blank">@our_memories_studio</a>
-      <a class="contact-link" href="https://www.instagram.com/chou_yun.0917" target="_blank">@chou_yun.0917</a>
+  <!-- CTA -->
+  <section id="cta">
+    <p class="cta-eyebrow">LET'S CREATE TOGETHER</p>
+    <h2 class="cta-title">想讓你的瞬間，<br>成為永恆的畫面</h2>
+    <div class="cta-btns">
+      <a class="btn btn-fill" href="mailto:lilian091719@gmail.com">寫信給我</a>
+      <a class="btn btn-out" href="https://www.instagram.com/our_memories_studio" target="_blank">Instagram</a>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    <span class="footer-name">周筠 YUN</span>
-    <span class="footer-copy">© 2026 Most Imagine Studio. All rights reserved.</span>
+  <footer id="footer">
+    <p>© 2026 周筠 YUN · 攝影師 × 燈光設計師 · 台北萬華</p>
   </footer>
 
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <button class="lb-close">✕</button>
+    <button class="lb-prev">‹</button>
+    <img id="lb-img" src="" alt="">
+    <button class="lb-next">›</button>
+    <div id="lb-counter"></div>
+  </div>
+
   <script>
+    // ════════════════════════════════════════════════════════════════
+    //  照片設定 ── 在這裡新增、更換、刪除照片
+    //  ● 第 1、2 張 = 頁面左右預覽圖
+    //  ● 全部照片都會出現在「查看更多照片」燈箱裡
+    // ════════════════════════════════════════════════════════════════
+    const PHOTOS = {
+
+      baby: [
+        'images/baby_04.jpg',        // ← 左格
+        'images/baby_01.jpg',        // ← 右格
+        'images/doudou/YUN05946.jpg',
+        'images/doudou/YUN06034.jpg',
+        'images/doudou/YUN06042.jpg',
+        'images/doudou/YUN06049.jpg',
+        'images/doudou/YUN06121.jpg',
+        'images/doudou/YUN06231.jpg',
+        'images/baby_02.jpg',
+        'images/baby_03.jpg',
+      ],
+
+      event: [
+        'images/event_asus_01.jpg',      // ← 左格
+        'images/event_tekscono_01.jpg',  // ← 右格
+        'images/event_asus_02.jpg',
+        'images/event_tekscono_02.jpg',
+        'images/event_cycle_01.jpg',
+        'images/event_cycle_02.jpg',
+        'images/event_01.jpg',
+        'images/event_02.jpg',
+      ],
+
+      dance: [
+        'images/event_02.jpg',   // ← 左格（舞蹈照片待補）
+        'images/event_01.jpg',   // ← 右格（舞蹈照片待補）
+      ],
+
+      portrait: [
+        'images/portrait_05.jpg',  // ← 左格
+        'images/portrait_06.jpg',  // ← 右格
+        'images/portrait_01.jpg',
+        'images/portrait_02.jpg',
+        'images/portrait_03.jpg',
+        'images/portrait_04.jpg',
+      ],
+
+      pet: [
+        'images/personal_01.jpg',  // ← 左格
+        'images/pet_01.jpg',       // ← 右格
+      ],
+
+    }
+    // ════════════════════════════════════════════════════════════════
+
+    // 自動套用照片設定
+    document.querySelectorAll('.work-section[data-cat]').forEach(section => {
+      const photos = PHOTOS[section.dataset.cat] || []
+      section.querySelectorAll('.work-photo').forEach((img, i) => {
+        img.src = photos[i] || ''
+        img.dataset.images = JSON.stringify(photos)
+        img.dataset.index = i
+      })
+      const btn = section.querySelector('.btn-ghost')
+      if (btn) btn.dataset.images = JSON.stringify(photos)
+    })
+
     // Nav scroll
     const nav = document.getElementById('nav')
     window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60)
-    })
-
-    // Portfolio filter
-    const filterBtns = document.querySelectorAll('.filter-btn')
-    const cards = document.querySelectorAll('.portfolio-card')
-    const albums = document.querySelectorAll('.photo-album')
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'))
-        btn.classList.add('active')
-        const filter = btn.dataset.filter
-        cards.forEach(card => {
-          const match = filter === 'all' || card.dataset.cat === filter
-          card.classList.toggle('hidden', !match)
-        })
-        albums.forEach(album => {
-          const match = filter === 'all' || album.dataset.cat === filter
-          album.classList.toggle('hidden', !match)
-        })
-      })
+      nav.classList.toggle('scrolled', window.scrollY > 50)
     })
 
     // Lightbox
     const lb = document.getElementById('lightbox')
     const lbImg = document.getElementById('lb-img')
-    const lbCounter = document.getElementById('lb-counter')
-    let lbImages = [], lbIndex = 0
+    const lbCtr = document.getElementById('lb-counter')
+    let lbList = [], lbIdx = 0
 
-    function lbOpen(images, index) {
-      lbImages = images; lbIndex = index
-      lbImg.src = lbImages[lbIndex]
-      lbCounter.textContent = `${lbIndex + 1} / ${lbImages.length}`
+    function lbOpen(imgs, idx) {
+      lbList = imgs; lbIdx = idx
+      lbImg.src = lbList[lbIdx]
+      lbCtr.textContent = lbList.length > 1 ? `${lbIdx + 1} / ${lbList.length}` : ''
       lb.classList.add('open')
       document.body.style.overflow = 'hidden'
     }
-    function lbClose() {
-      lb.classList.remove('open')
-      document.body.style.overflow = ''
-    }
-    function lbStep(dir) {
-      lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length
-      lbImg.src = lbImages[lbIndex]
-      lbCounter.textContent = `${lbIndex + 1} / ${lbImages.length}`
+    function lbClose() { lb.classList.remove('open'); document.body.style.overflow = '' }
+    function lbStep(d) {
+      lbIdx = (lbIdx + d + lbList.length) % lbList.length
+      lbImg.src = lbList[lbIdx]
+      lbCtr.textContent = `${lbIdx + 1} / ${lbList.length}`
     }
 
-    document.querySelectorAll('.album-grid').forEach(grid => {
-      const images = JSON.parse(grid.dataset.images)
-      grid.querySelectorAll('.album-thumb').forEach(thumb => {
-        thumb.addEventListener('click', () => {
-          lbOpen(images, parseInt(thumb.dataset.index))
-        })
+    document.querySelectorAll('.work-photo').forEach(img => {
+      img.addEventListener('click', () => {
+        lbOpen(JSON.parse(img.dataset.images), parseInt(img.dataset.index) || 0)
       })
     })
-
+    document.querySelectorAll('.btn-ghost').forEach(btn => {
+      if (btn.dataset.images) btn.addEventListener('click', () => lbOpen(JSON.parse(btn.dataset.images), 0))
+    })
     document.querySelector('.lb-close').addEventListener('click', lbClose)
     document.querySelector('.lb-prev').addEventListener('click', e => { e.stopPropagation(); lbStep(-1) })
     document.querySelector('.lb-next').addEventListener('click', e => { e.stopPropagation(); lbStep(1) })
-    lb.addEventListener('click', e => { if (e.target === lb || e.target === lbImg) lbClose() })
+    lb.addEventListener('click', e => { if (e.target === lb) lbClose() })
     document.addEventListener('keydown', e => {
       if (!lb.classList.contains('open')) return
       if (e.key === 'Escape') lbClose()
