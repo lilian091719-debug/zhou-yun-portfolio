@@ -10,7 +10,7 @@
     :root {
       --bg: #F8F5F0; --dark: #1A2620; --dark2: #141E1B;
       --morandi: #8BA5B3; --cream: #E8E4DC; --muted: #7A7265;
-      --border: rgba(139,165,179,0.18);
+      --border: rgba(139,165,179,0.18); --gold: #C9A84C;
     }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); font-family: 'Noto Sans TC', sans-serif; }
@@ -53,14 +53,14 @@
     .album-card:hover .album-card-img img { transform: scale(1.04); }
     .album-card-title {
       display: block;
-      margin-top: 0;
       padding: 11px 16px;
       font-family: 'Noto Serif TC', serif;
       font-size: 14px; font-weight: 300; letter-spacing: 0.08em;
-      background: var(--dark2); color: var(--cream);
+      background: var(--gold); color: var(--dark);
+      text-align: center;
       transition: background 0.3s;
     }
-    .album-card:hover .album-card-title { background: var(--dark); color: var(--morandi); }
+    .album-card:hover .album-card-title { background: #b8942f; }
 
     /* FOOTER */
     footer { background: var(--dark2); padding: 28px 60px; text-align: center; }
