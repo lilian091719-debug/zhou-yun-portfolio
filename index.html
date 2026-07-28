@@ -559,6 +559,8 @@
       <div class="work-right">
         <img class="work-photo" alt="抓周攝影">
         <img class="work-photo" alt="抓周攝影">
+        <img class="work-photo" alt="抓周攝影">
+        <img class="work-photo" alt="抓周攝影">
       </div>
     </div>
   </section>
@@ -581,6 +583,8 @@
       <div class="work-right">
         <img class="work-photo" alt="活動紀錄">
         <img class="work-photo" alt="活動紀錄">
+        <img class="work-photo" alt="活動紀錄">
+        <img class="work-photo" alt="活動紀錄">
       </div>
     </div>
   </section>
@@ -599,6 +603,8 @@
         <button class="btn-ghost">查看更多照片</button>
       </div>
       <div class="work-right">
+        <img class="work-photo" alt="舞蹈紀錄">
+        <img class="work-photo" alt="舞蹈紀錄">
         <img class="work-photo" alt="舞蹈紀錄">
         <img class="work-photo" alt="舞蹈紀錄">
       </div>
@@ -622,6 +628,8 @@
       <div class="work-right">
         <img class="work-photo" alt="人物形象">
         <img class="work-photo" alt="人物形象">
+        <img class="work-photo" alt="人物形象">
+        <img class="work-photo" alt="人物形象">
       </div>
     </div>
   </section>
@@ -641,6 +649,8 @@
         <button class="btn-ghost">查看更多照片</button>
       </div>
       <div class="work-right">
+        <img class="work-photo" alt="寵物寫真">
+        <img class="work-photo" alt="寵物寫真">
         <img class="work-photo" alt="寵物寫真">
         <img class="work-photo" alt="寵物寫真">
       </div>
@@ -753,9 +763,13 @@
     document.querySelectorAll('.work-section[data-cat]').forEach(section => {
       const photos = PHOTOS[section.dataset.cat] || []
       section.querySelectorAll('.work-photo').forEach((img, i) => {
-        img.src = photos[i] || ''
-        img.dataset.images = JSON.stringify(photos)
-        img.dataset.index = i
+        if (photos[i]) {
+          img.src = photos[i]
+          img.dataset.images = JSON.stringify(photos)
+          img.dataset.index = i
+        } else {
+          img.style.display = 'none'
+        }
       })
       const btn = section.querySelector('.btn-ghost')
       if (btn) btn.dataset.images = JSON.stringify(photos)
