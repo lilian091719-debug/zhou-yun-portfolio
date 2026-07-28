@@ -552,11 +552,11 @@
         <h2 class="work-title">抓周攝影</h2>
         <p class="work-story">「洞察孩子，是我當舞蹈老師 8 年中學到最重要的事。到府那天，我帶著同一份耐心，等那個只屬於你們的瞬間。」</p>
         <ul class="work-subs">
-          <li>到府抓周攝影</li>
+          <li><a href="baby.html" style="color:inherit;text-decoration:none;">到府抓周攝影</a></li>
         </ul>
         <a class="btn-ghost" href="baby.html">查看更多照片</a>
       </div>
-      <div class="work-right">
+      <div class="work-right" data-link="baby.html">
         <img class="work-photo" alt="抓周攝影">
         <img class="work-photo" alt="抓周攝影">
         <img class="work-photo" alt="抓周攝影">
@@ -797,6 +797,8 @@
 
     document.querySelectorAll('.work-photo').forEach(img => {
       img.addEventListener('click', () => {
+        const link = img.closest('[data-link]')?.dataset.link
+        if (link) { window.location.href = link; return }
         lbOpen(JSON.parse(img.dataset.images), parseInt(img.dataset.index) || 0)
       })
     })
