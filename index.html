@@ -271,8 +271,11 @@
     }
     .work-inner.flip .work-left { padding-right: 0; padding-left: 64px; }
     .work-eyebrow {
-      font-size: 10px; letter-spacing: 0.42em;
-      color: var(--morandi); margin-bottom: 16px;
+      display: inline-block;
+      background: var(--dark); color: var(--morandi);
+      padding: 4px 12px;
+      font-size: 9px; letter-spacing: 0.38em;
+      margin-bottom: 20px;
     }
     .work-title {
       font-family: 'Noto Serif TC', serif;
@@ -287,12 +290,15 @@
       border-left: 2px solid var(--morandi);
       padding-left: 18px; margin-bottom: 28px;
     }
-    .work-subs { list-style: none; margin-bottom: 28px; }
+    .work-subs { list-style: none; margin-bottom: 28px; display: flex; flex-wrap: wrap; gap: 8px; }
     .work-subs li {
-      font-size: 12px; letter-spacing: 0.08em; color: var(--muted);
-      padding: 7px 0; border-bottom: 1px solid var(--border);
+      font-size: 11px; letter-spacing: 0.06em; color: var(--dark);
+      padding: 5px 13px;
+      border: 1px solid rgba(139,165,179,0.45);
+      background: rgba(139,165,179,0.09);
+      transition: background 0.22s, border-color 0.22s;
     }
-    .work-subs li::before { content: '— '; color: var(--morandi); }
+    .work-subs li:hover { background: rgba(139,165,179,0.2); border-color: var(--morandi); }
     .btn-ghost {
       display: inline-block; padding: 10px 26px;
       font-size: 11px; letter-spacing: 0.16em;
