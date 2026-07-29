@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>活動紀錄 — 周筠 YUN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400&family=Noto+Sans+TC:wght@300;400&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F8F5F0; --dark: #1A2620; --dark2: #141E1B;
+      --morandi: #8BA5B3; --cream: #E8E4DC; --muted: #7A7265;
+      --border: rgba(139,165,179,0.18); --gold: #C9A84C;
+    }
+    body { background: var(--bg); font-family: 'Noto Sans TC', sans-serif; }
+
+    /* NAV */
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; height: 64px; background: rgba(20,30,27,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(139,165,179,0.12); }
+    .nav-logo { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+    .nav-logo-zh { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 400; letter-spacing: 0.12em; color: var(--cream); }
+    .nav-logo-en { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; letter-spacing: 0.18em; color: var(--morandi); }
+    .nav-menu { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-item { position: relative; }
+    .nav-item > a { font-size: 12px; letter-spacing: 0.1em; color: rgba(232,228,220,0.65); text-decoration: none; transition: color 0.22s; padding: 22px 0; display: block; }
+    .nav-item > a:hover, .nav-item > a.active { color: var(--cream); }
+    .has-drop > a::after { content: ' ▾'; font-size: 8px; opacity: 0.6; }
+    .nav-dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(6px); background: var(--dark2); border: 1px solid rgba(139,165,179,0.12); border-radius: 3px; min-width: 200px; padding: 8px 0; opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s, visibility 0.2s; white-space: nowrap; }
+    .has-drop:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown a { display: block; padding: 10px 22px; font-size: 12px; letter-spacing: 0.06em; color: rgba(232,228,220,0.55); text-decoration: none; transition: color 0.18s, background 0.18s; }
+    .nav-dropdown a:hover { color: var(--cream); background: rgba(139,165,179,0.08); }
+
+    /* HEADER */
+    .page-header { padding: 112px 60px 40px; }
+    .page-header .eyebrow { font-size: 10px; letter-spacing: 0.45em; color: var(--morandi); margin-bottom: 14px; }
+    .page-header h1 {
+      display: inline-block;
+      background: #EDE8DB; color: #2C2416;
+      padding: 8px 24px;
+      font-family: 'Helvetica Neue', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      font-size: clamp(22px, 2.6vw, 34px); font-weight: 300;
+      letter-spacing: 0.15em; margin-bottom: 16px;
+    }
+    .page-header p { font-size: 13px; letter-spacing: 0.08em; color: var(--muted); }
+
+    /* FILTER TABS */
+    .filter-wrap { padding: 0 60px; margin-bottom: 48px; border-bottom: 1px solid var(--border); }
+    .filter-tabs { display: flex; gap: 0; }
+    .filter-tab {
+      padding: 14px 28px;
+      font-size: 13px; letter-spacing: 0.08em;
+      color: var(--muted); cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+      user-select: none;
+    }
+    .filter-tab:hover { color: #2C2416; }
+    .filter-tab.active { color: #2C2416; border-bottom-color: var(--gold); font-weight: 400; }
+
+    /* ALBUM GRID */
+    .album-grid { max-width: 1280px; margin: 0 auto; padding: 0 60px 100px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .album-card { text-decoration: none; display: block; }
+    .album-card-img { overflow: hidden; aspect-ratio: 3/2; }
+    .album-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
+    .album-card:hover .album-card-img img { transform: scale(1.04); }
+    .album-card-title {
+      display: block; padding: 11px 16px;
+      font-family: 'Helvetica Neue', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      font-size: 14px; font-weight: 300; letter-spacing: 0.15em;
+      background: #EDE8DB; color: #2C2416; text-align: center;
+      transition: background 0.3s;
+    }
+    .album-card:hover .album-card-title { background: #ddd8cc; }
+    .album-card-cat {
+      padding: 6px 0 0;
+      font-size: 11px; letter-spacing: 0.1em;
+      color: var(--morandi);
+    }
+
+    /* FOOTER */
+    footer { background: var(--dark2); padding: 28px 60px; text-align: center; }
+    footer p { font-size: 11px; letter-spacing: 0.2em; color: rgba(232,228,220,0.22); }
+
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; }
+      .nav-menu { display: none; }
+      .page-header { padding: 90px 20px 32px; }
+      .filter-wrap { padding: 0 20px; }
+      .filter-tab { padding: 12px 16px; font-size: 12px; }
+      .album-grid { grid-template-columns: repeat(2, 1fr); padding: 0 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <a class="nav-logo" href="index.html">
+      <span class="nav-logo-zh">周筠</span><span class="nav-logo-en">YUN</span>
+    </a>
+    <ul class="nav-menu">
+      <li class="nav-item has-drop"><a href="baby.html">抓周攝影</a>
+        <ul class="nav-dropdown"><li><a href="baby.html">到府抓周攝影</a></li></ul>
+      </li>
+      <li class="nav-item has-drop"><a href="event.html" class="active">活動紀錄</a>
+        <ul class="nav-dropdown">
+          <li><a href="event.html?cat=商業公關">商業公關</a></li>
+          <li><a href="event.html?cat=溫馨派對">溫馨派對</a></li>
+          <li><a href="event.html?cat=舞台藝文">舞台藝文</a></li>
+          <li><a href="event.html?cat=尾牙婚禮">尾牙婚禮</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a href="index.html#s-dance">舞蹈</a></li>
+      <li class="nav-item has-drop"><a href="index.html#s-portrait">人物形象</a>
+        <ul class="nav-dropdown">
+          <li><a href="index.html#s-portrait">商務與專業形象</a></li>
+          <li><a href="index.html#s-portrait">個人品牌與自媒體形象</a></li>
+          <li><a href="index.html#s-portrait">藝術與表演者形象</a></li>
+        </ul>
+      </li>
+      <li class="nav-item has-drop"><a href="index.html#s-pet">寵物寫真</a>
+        <ul class="nav-dropdown">
+          <li><a href="index.html#s-pet">棚拍精緻光影寫真</a></li>
+          <li><a href="index.html#s-pet">居家溫馨生活紀錄（到府）</a></li>
+          <li><a href="index.html#s-pet">戶外自然跑跳紀實</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a href="https://www.notion.so/2b3aa597cce680f080a9cc00b54402d2" target="_blank">燈光設計</a></li>
+      <li class="nav-item"><a href="index.html#footer">聯絡</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <p class="eyebrow">EVENT PHOTOGRAPHY · 活動紀錄</p>
+    <h1>活動紀錄</h1>
+    <p>商業公關 · 溫馨派對 · 舞台藝文 · 尾牙婚禮</p>
+  </div>
+
+  <div class="filter-wrap">
+    <div class="filter-tabs">
+      <div class="filter-tab active" data-filter="all">全部</div>
+      <div class="filter-tab" data-filter="商業公關">商業公關</div>
+      <div class="filter-tab" data-filter="溫馨派對">溫馨派對</div>
+      <div class="filter-tab" data-filter="舞台藝文">舞台藝文</div>
+      <div class="filter-tab" data-filter="尾牙婚禮">尾牙婚禮</div>
+    </div>
+  </div>
+
+  <div class="album-grid">
+    <a class="album-card" href="event-hawaz.html" data-category="商業公關">
+      <div class="album-card-img"><img src="images/event/hawaz/cover.jpg" alt="哈瓦士福隆海灘活動"></div>
+      <div class="album-card-title">哈瓦士福隆海灘活動</div>
+      <div class="album-card-cat"># 商業公關</div>
+    </a>
+    <a class="album-card" href="event-nanying.html" data-category="溫馨派對">
+      <div class="album-card-img"><img src="images/event/nanying/cover.jpg" alt="南鷹家族歷九彌新"></div>
+      <div class="album-card-title">南鷹家族歷九彌新</div>
+      <div class="album-card-cat"># 溫馨派對</div>
+    </a>
+    <a class="album-card" href="event-chuanshuo.html" data-category="舞台藝文">
+      <div class="album-card-img"><img src="images/event/chuanshuo/cover.jpg" alt="傳說女神盃活動"></div>
+      <div class="album-card-title">傳說女神盃活動</div>
+      <div class="album-card-cat"># 舞台藝文</div>
+    </a>
+    <a class="album-card" href="event-wedding.html" data-category="尾牙婚禮">
+      <div class="album-card-img"><img src="images/event/wedding/cover.jpg" alt="志宇 & Kiki 婚禮"></div>
+      <div class="album-card-title">志宇 & Kiki 婚禮</div>
+      <div class="album-card-cat"># 尾牙婚禮</div>
+    </a>
+  </div>
+
+  <footer><p>© 2026 周筠 YUN · 攝影師 × 燈光設計師 · 台北萬華</p></footer>
+
+  <script>
+    const tabs = document.querySelectorAll('.filter-tab')
+    const cards = document.querySelectorAll('.album-card')
+
+    function setFilter(cat) {
+      tabs.forEach(t => t.classList.toggle('active', t.dataset.filter === cat))
+      cards.forEach(card => {
+        card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none'
+      })
+    }
+
+    tabs.forEach(tab => tab.addEventListener('click', () => setFilter(tab.dataset.filter)))
+
+    // URL param support: event.html?cat=商業公關
+    const urlCat = new URLSearchParams(location.search).get('cat')
+    if (urlCat) setFilter(urlCat)
+  </script>
+</body>
+</html>

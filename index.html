@@ -432,12 +432,12 @@
         </ul>
       </li>
       <li class="nav-item has-drop">
-        <a href="#s-event">活動紀錄</a>
+        <a href="event.html">活動紀錄</a>
         <ul class="nav-dropdown">
-          <li><a href="#s-event">商業公關</a></li>
-          <li><a href="#s-event">溫馨派對</a></li>
-          <li><a href="#s-event">舞台藝文</a></li>
-          <li><a href="#s-event">尾牙婚禮</a></li>
+          <li><a href="event.html?cat=商業公關">商業公關</a></li>
+          <li><a href="event.html?cat=溫馨派對">溫馨派對</a></li>
+          <li><a href="event.html?cat=舞台藝文">舞台藝文</a></li>
+          <li><a href="event.html?cat=尾牙婚禮">尾牙婚禮</a></li>
         </ul>
       </li>
       <li class="nav-item"><a href="#s-dance">舞蹈</a></li>
@@ -577,14 +577,14 @@
         <h2 class="work-title">活動紀錄</h2>
         <p class="work-story">「工程師的眼睛——我會在雜亂的現場裡，找到值得留住的角度。」</p>
         <ul class="work-subs">
-          <li>商業公關</li>
-          <li>溫馨派對</li>
-          <li>舞台藝文</li>
-          <li>尾牙婚禮</li>
+          <li><a href="event.html?cat=商業公關" style="color:inherit;text-decoration:none;">商業公關</a></li>
+          <li><a href="event.html?cat=溫馨派對" style="color:inherit;text-decoration:none;">溫馨派對</a></li>
+          <li><a href="event.html?cat=舞台藝文" style="color:inherit;text-decoration:none;">舞台藝文</a></li>
+          <li><a href="event.html?cat=尾牙婚禮" style="color:inherit;text-decoration:none;">尾牙婚禮</a></li>
         </ul>
-        <button class="btn-ghost">查看更多照片</button>
+        <a class="btn-ghost" href="event.html">查看更多照片</a>
       </div>
-      <div class="work-right">
+      <div class="work-right" data-link="event.html">
         <img class="work-photo" alt="活動紀錄">
         <img class="work-photo" alt="活動紀錄">
         <img class="work-photo" alt="活動紀錄">
@@ -725,14 +725,10 @@
       ],
 
       event: [
-        'images/event_asus_01.jpg',      // ← 左格
-        'images/event_tekscono_01.jpg',  // ← 右格
-        'images/event_asus_02.jpg',
-        'images/event_tekscono_02.jpg',
-        'images/event_cycle_01.jpg',
-        'images/event_cycle_02.jpg',
-        'images/event_01.jpg',
-        'images/event_02.jpg',
+        'images/event/hawaz/cover.jpg',
+        'images/event/nanying/cover.jpg',
+        'images/event/chuanshuo/cover.jpg',
+        'images/event/wedding/cover.jpg',
       ],
 
       dance: [
