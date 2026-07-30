@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>南鷹家族扶輪社慶典 — 周筠 YUN</title>
+  <title>輝夜放空站開幕活動 — 周筠 YUN</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400&family=Noto+Sans+TC:wght@300;400&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,47 +45,50 @@
     <a class="nav-back" href="event.html">← 活動紀錄</a>
   </nav>
   <div class="page-header">
-    <p class="eyebrow">2025 · 12 · 18 · 溫馨派對</p>
-    <h1>南鷹家族扶輪社慶典</h1>
+    <p class="eyebrow">2025 · 10 · 28 · 商業公關</p>
+    <h1>輝夜放空站開幕活動</h1>
   </div>
   <div class="gallery-grid">
-    <img class="grid-photo" src="images/event/nanying/cover.jpg" alt="" data-index="0">
-    <img class="grid-photo" src="images/event/nanying/LIA01328.jpg" alt="" data-index="1">
-    <img class="grid-photo" src="images/event/nanying/LIA01333.jpg" alt="" data-index="2">
-    <img class="grid-photo" src="images/event/nanying/LIA01432.jpg" alt="" data-index="3">
-    <img class="grid-photo" src="images/event/nanying/LIA01559.jpg" alt="" data-index="4">
-    <img class="grid-photo" src="images/event/nanying/LIA01624.jpg" alt="" data-index="5">
-    <img class="grid-photo" src="images/event/nanying/LIA01781.jpg" alt="" data-index="6">
-    <img class="grid-photo" src="images/event/nanying/LIA01820.jpg" alt="" data-index="7">
-    <img class="grid-photo" src="images/event/nanying/LIA02217.jpg" alt="" data-index="8">
-    <img class="grid-photo" src="images/event/nanying/LIA02467.jpg" alt="" data-index="9">  </div>
+    <img class="grid-photo" src="images/event/huiye/cover.jpg" alt="" data-index="0">
+    <img class="grid-photo" src="images/event/huiye/LIA08994.jpg" alt="" data-index="1">
+    <img class="grid-photo" src="images/event/huiye/LIA09016.jpg" alt="" data-index="2">
+    <img class="grid-photo" src="images/event/huiye/LIA09030.jpg" alt="" data-index="3">
+    <img class="grid-photo" src="images/event/huiye/LIA09044.jpg" alt="" data-index="4">
+    <img class="grid-photo" src="images/event/huiye/LIA09124.jpg" alt="" data-index="5">
+    <img class="grid-photo" src="images/event/huiye/LIA09138.jpg" alt="" data-index="6">
+    <img class="grid-photo" src="images/event/huiye/LIA09174.jpg" alt="" data-index="7">
+    <img class="grid-photo" src="images/event/huiye/LIA09196.jpg" alt="" data-index="8">
+    <img class="grid-photo" src="images/event/huiye/LIA09202.jpg" alt="" data-index="9">
+    <img class="grid-photo" src="images/event/huiye/LIA09246.jpg" alt="" data-index="10">
+    <img class="grid-photo" src="images/event/huiye/LIA09286.jpg" alt="" data-index="11">
+    <img class="grid-photo" src="images/event/huiye/LIA09291.jpg" alt="" data-index="12">
+  </div>
   <footer><p>© 2026 周筠 YUN · 攝影師 × 燈光設計師 · 台北萬華</p></footer>
   <div id="lightbox">
-    <button class="lb-close">✕</button>
-    <button class="lb-prev">‹</button>
+    <button class="lb-close">✕</button><button class="lb-prev">‹</button>
     <img id="lb-img" src="" alt="">
-    <button class="lb-next">›</button>
-    <div id="lb-counter"></div>
+    <button class="lb-next">›</button><div id="lb-counter"></div>
   </div>
   <script>
-    const PHOTOS = ['images/event/nanying/cover.jpg','images/event/nanying/LIA01328.jpg',
-      'images/event/nanying/LIA01333.jpg','images/event/nanying/LIA01432.jpg',
-      'images/event/nanying/LIA01559.jpg','images/event/nanying/LIA01624.jpg',
-      'images/event/nanying/LIA01781.jpg','images/event/nanying/LIA01820.jpg',
-      'images/event/nanying/LIA02217.jpg','images/event/nanying/LIA02467.jpg']
-    const lb = document.getElementById('lightbox')
-    const lbImg = document.getElementById('lb-img')
-    const lbCtr = document.getElementById('lb-counter')
-    let idx = 0
-    function lbOpen(i) { idx=i; lbImg.src=PHOTOS[idx]; lbCtr.textContent=`${idx+1} / ${PHOTOS.length}`; lb.classList.add('open'); document.body.style.overflow='hidden' }
-    function lbClose() { lb.classList.remove('open'); document.body.style.overflow='' }
-    function lbStep(d) { idx=(idx+d+PHOTOS.length)%PHOTOS.length; lbImg.src=PHOTOS[idx]; lbCtr.textContent=`${idx+1} / ${PHOTOS.length}` }
-    document.querySelectorAll('.grid-photo').forEach(img => img.addEventListener('click', () => lbOpen(parseInt(img.dataset.index))))
-    document.querySelector('.lb-close').addEventListener('click', lbClose)
-    document.querySelector('.lb-prev').addEventListener('click', e => { e.stopPropagation(); lbStep(-1) })
-    document.querySelector('.lb-next').addEventListener('click', e => { e.stopPropagation(); lbStep(1) })
-    lb.addEventListener('click', e => { if(e.target===lb) lbClose() })
-    document.addEventListener('keydown', e => { if(!lb.classList.contains('open')) return; if(e.key==='Escape') lbClose(); if(e.key==='ArrowLeft') lbStep(-1); if(e.key==='ArrowRight') lbStep(1) })
+    const PHOTOS = [
+      'images/event/huiye/cover.jpg',
+      'images/event/huiye/LIA08994.jpg','images/event/huiye/LIA09016.jpg',
+      'images/event/huiye/LIA09030.jpg','images/event/huiye/LIA09044.jpg',
+      'images/event/huiye/LIA09124.jpg','images/event/huiye/LIA09138.jpg',
+      'images/event/huiye/LIA09174.jpg','images/event/huiye/LIA09196.jpg',
+      'images/event/huiye/LIA09202.jpg','images/event/huiye/LIA09246.jpg',
+      'images/event/huiye/LIA09286.jpg','images/event/huiye/LIA09291.jpg',
+    ]
+    const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lb-img'),lbCtr=document.getElementById('lb-counter');let idx=0
+    function lbOpen(i){idx=i;lbImg.src=PHOTOS[idx];lbCtr.textContent=`${idx+1} / ${PHOTOS.length}`;lb.classList.add('open');document.body.style.overflow='hidden'}
+    function lbClose(){lb.classList.remove('open');document.body.style.overflow=''}
+    function lbStep(d){idx=(idx+d+PHOTOS.length)%PHOTOS.length;lbImg.src=PHOTOS[idx];lbCtr.textContent=`${idx+1} / ${PHOTOS.length}`}
+    document.querySelectorAll('.grid-photo').forEach(img=>img.addEventListener('click',()=>lbOpen(parseInt(img.dataset.index))))
+    document.querySelector('.lb-close').addEventListener('click',lbClose)
+    document.querySelector('.lb-prev').addEventListener('click',e=>{e.stopPropagation();lbStep(-1)})
+    document.querySelector('.lb-next').addEventListener('click',e=>{e.stopPropagation();lbStep(1)})
+    lb.addEventListener('click',e=>{if(e.target===lb)lbClose()})
+    document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')lbClose();if(e.key==='ArrowLeft')lbStep(-1);if(e.key==='ArrowRight')lbStep(1)})
   </script>
 </body>
 </html>
