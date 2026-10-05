@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社會住宅營運管理聯繫大平台活動 — 周筠 YUN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400&family=Noto+Sans+TC:wght@300;400&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #F8F5F0; --dark2: #141E1B; --morandi: #8BA5B3; --cream: #E8E4DC; }
+    body { background: var(--bg); font-family: 'Noto Sans TC', sans-serif; }
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; height: 64px; background: rgba(20,30,27,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(139,165,179,0.12); }
+    .nav-logo { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+    .nav-logo-zh { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 400; letter-spacing: 0.12em; color: var(--cream); }
+    .nav-logo-en { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; letter-spacing: 0.18em; color: var(--morandi); }
+    .nav-back { font-size: 12px; letter-spacing: 0.1em; color: rgba(232,228,220,0.55); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--cream); }
+    .page-header { padding: 112px 60px 40px; text-align: center; }
+    .page-header .eyebrow { font-size: 10px; letter-spacing: 0.45em; color: var(--morandi); margin-bottom: 14px; }
+    .page-header h1 { font-family: 'Noto Serif TC', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.1em; color: #1C1C1C; }
+    .gallery-grid { max-width: 1280px; margin: 0 auto; padding: 0 60px 100px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .grid-photo { width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block; cursor: pointer; transition: opacity 0.3s; }
+    .grid-photo:hover { opacity: 0.86; }
+    footer { background: var(--dark2); padding: 28px 60px; text-align: center; }
+    footer p { font-size: 11px; letter-spacing: 0.2em; color: rgba(232,228,220,0.22); }
+    #lightbox { display: none; position: fixed; inset: 0; background: rgba(20,30,27,0.97); z-index: 9999; align-items: center; justify-content: center; }
+    #lightbox.open { display: flex; }
+    #lb-img { max-width: 92vw; max-height: 92vh; object-fit: contain; }
+    .lb-close { position: fixed; top: 22px; right: 30px; background: none; border: none; color: rgba(232,228,220,0.5); font-size: 28px; cursor: pointer; }
+    .lb-close:hover { color: var(--cream); }
+    .lb-prev, .lb-next { position: fixed; top: 50%; transform: translateY(-50%); background: none; border: none; color: rgba(232,228,220,0.4); font-size: 56px; cursor: pointer; transition: color 0.2s; }
+    .lb-prev { left: 20px; } .lb-next { right: 20px; }
+    .lb-prev:hover, .lb-next:hover { color: var(--cream); }
+    #lb-counter { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); font-size: 11px; letter-spacing: 0.22em; color: rgba(232,228,220,0.32); }
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; }
+      .page-header { padding: 90px 20px 28px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); padding: 0 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <a class="nav-logo" href="index.html"><span class="nav-logo-zh">周筠</span><span class="nav-logo-en">YUN</span></a>
+    <a class="nav-back" href="event.html">← 活動紀錄</a>
+  </nav>
+  <div class="page-header">
+    <p class="eyebrow">2026 · 09 · 22 · 商業公關</p>
+    <h1>社會住宅營運管理聯繫大平台活動</h1>
+  </div>
+  <div class="gallery-grid">
+    <img class="grid-photo" src="images/event/socialhousing26/cover.jpg" alt="" data-index="0">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05505.jpg" alt="" data-index="1">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05512.jpg" alt="" data-index="2">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05515.jpg" alt="" data-index="3">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05517.jpg" alt="" data-index="4">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05519.jpg" alt="" data-index="5">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05520.jpg" alt="" data-index="6">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05868.jpg" alt="" data-index="7">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05875.jpg" alt="" data-index="8">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05884.jpg" alt="" data-index="9">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05890.jpg" alt="" data-index="10">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05891.jpg" alt="" data-index="11">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05893.jpg" alt="" data-index="12">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05897.jpg" alt="" data-index="13">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05899.jpg" alt="" data-index="14">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05901.jpg" alt="" data-index="15">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05902.jpg" alt="" data-index="16">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05910.jpg" alt="" data-index="17">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05917.jpg" alt="" data-index="18">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05919.jpg" alt="" data-index="19">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05924.jpg" alt="" data-index="20">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05925.jpg" alt="" data-index="21">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05928.jpg" alt="" data-index="22">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05930.jpg" alt="" data-index="23">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05932.jpg" alt="" data-index="24">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05935.jpg" alt="" data-index="25">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05938.jpg" alt="" data-index="26">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05939.jpg" alt="" data-index="27">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05944.jpg" alt="" data-index="28">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05947.jpg" alt="" data-index="29">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05950.jpg" alt="" data-index="30">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05954.jpg" alt="" data-index="31">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05962.jpg" alt="" data-index="32">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05963.jpg" alt="" data-index="33">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05966.jpg" alt="" data-index="34">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05968.jpg" alt="" data-index="35">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05973.jpg" alt="" data-index="36">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05978.jpg" alt="" data-index="37">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05981.jpg" alt="" data-index="38">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05983.jpg" alt="" data-index="39">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05987.jpg" alt="" data-index="40">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN05989.jpg" alt="" data-index="41">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06000.jpg" alt="" data-index="42">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06003.jpg" alt="" data-index="43">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06006.jpg" alt="" data-index="44">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06007.jpg" alt="" data-index="45">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06012.jpg" alt="" data-index="46">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06015.jpg" alt="" data-index="47">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06020.jpg" alt="" data-index="48">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06022.jpg" alt="" data-index="49">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06026.jpg" alt="" data-index="50">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06028.jpg" alt="" data-index="51">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06030.jpg" alt="" data-index="52">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06031.jpg" alt="" data-index="53">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06032.jpg" alt="" data-index="54">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06033.jpg" alt="" data-index="55">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06039.jpg" alt="" data-index="56">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06045.jpg" alt="" data-index="57">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06049.jpg" alt="" data-index="58">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06050.jpg" alt="" data-index="59">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06054.jpg" alt="" data-index="60">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06058.jpg" alt="" data-index="61">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06061.jpg" alt="" data-index="62">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06062.jpg" alt="" data-index="63">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06064.jpg" alt="" data-index="64">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06071.jpg" alt="" data-index="65">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06073.jpg" alt="" data-index="66">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06075.jpg" alt="" data-index="67">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06076.jpg" alt="" data-index="68">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06080.jpg" alt="" data-index="69">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06081.jpg" alt="" data-index="70">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06083.jpg" alt="" data-index="71">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06089.jpg" alt="" data-index="72">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06091.jpg" alt="" data-index="73">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06092.jpg" alt="" data-index="74">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06098.jpg" alt="" data-index="75">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06105.jpg" alt="" data-index="76">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06107.jpg" alt="" data-index="77">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06110.jpg" alt="" data-index="78">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06114.jpg" alt="" data-index="79">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06118.jpg" alt="" data-index="80">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06123.jpg" alt="" data-index="81">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06126.jpg" alt="" data-index="82">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06130.jpg" alt="" data-index="83">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06139.jpg" alt="" data-index="84">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06146.jpg" alt="" data-index="85">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06147.jpg" alt="" data-index="86">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06153.jpg" alt="" data-index="87">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06156.jpg" alt="" data-index="88">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06158.jpg" alt="" data-index="89">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06162.jpg" alt="" data-index="90">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06165.jpg" alt="" data-index="91">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06166.jpg" alt="" data-index="92">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06168.jpg" alt="" data-index="93">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06173.jpg" alt="" data-index="94">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06185.jpg" alt="" data-index="95">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06187.jpg" alt="" data-index="96">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06192.jpg" alt="" data-index="97">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06194.jpg" alt="" data-index="98">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06197.jpg" alt="" data-index="99">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06205.jpg" alt="" data-index="100">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06208.jpg" alt="" data-index="101">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06216.jpg" alt="" data-index="102">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06218.jpg" alt="" data-index="103">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06220.jpg" alt="" data-index="104">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06231.jpg" alt="" data-index="105">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06233.jpg" alt="" data-index="106">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06240.jpg" alt="" data-index="107">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06241.jpg" alt="" data-index="108">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06243.jpg" alt="" data-index="109">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06245.jpg" alt="" data-index="110">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06248.jpg" alt="" data-index="111">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06250.jpg" alt="" data-index="112">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06252.jpg" alt="" data-index="113">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06258.jpg" alt="" data-index="114">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06264.jpg" alt="" data-index="115">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06267.jpg" alt="" data-index="116">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06269.jpg" alt="" data-index="117">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06275.jpg" alt="" data-index="118">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06277.jpg" alt="" data-index="119">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06278.jpg" alt="" data-index="120">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06279.jpg" alt="" data-index="121">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06280.jpg" alt="" data-index="122">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06282.jpg" alt="" data-index="123">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06283.jpg" alt="" data-index="124">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06287.jpg" alt="" data-index="125">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06289.jpg" alt="" data-index="126">
+    <img class="grid-photo" src="images/event/socialhousing26/YUN06291.jpg" alt="" data-index="127">
+  </div>
+  <footer><p>© 2026 周筠 YUN · 攝影師 × 燈光設計師 · 台北萬華</p></footer>
+  <div id="lightbox">
+    <button class="lb-close">✕</button><button class="lb-prev">‹</button>
+    <img id="lb-img" src="" alt="">
+    <button class="lb-next">›</button><div id="lb-counter"></div>
+  </div>
+  <script>
+    const PHOTOS = [
+      'images/event/socialhousing26/cover.jpg',
+      'images/event/socialhousing26/YUN05505.jpg','images/event/socialhousing26/YUN05512.jpg',
+      'images/event/socialhousing26/YUN05515.jpg','images/event/socialhousing26/YUN05517.jpg',
+      'images/event/socialhousing26/YUN05519.jpg','images/event/socialhousing26/YUN05520.jpg',
+      'images/event/socialhousing26/YUN05868.jpg','images/event/socialhousing26/YUN05875.jpg',
+      'images/event/socialhousing26/YUN05884.jpg','images/event/socialhousing26/YUN05890.jpg',
+      'images/event/socialhousing26/YUN05891.jpg','images/event/socialhousing26/YUN05893.jpg',
+      'images/event/socialhousing26/YUN05897.jpg','images/event/socialhousing26/YUN05899.jpg',
+      'images/event/socialhousing26/YUN05901.jpg','images/event/socialhousing26/YUN05902.jpg',
+      'images/event/socialhousing26/YUN05910.jpg','images/event/socialhousing26/YUN05917.jpg',
+      'images/event/socialhousing26/YUN05919.jpg','images/event/socialhousing26/YUN05924.jpg',
+      'images/event/socialhousing26/YUN05925.jpg','images/event/socialhousing26/YUN05928.jpg',
+      'images/event/socialhousing26/YUN05930.jpg','images/event/socialhousing26/YUN05932.jpg',
+      'images/event/socialhousing26/YUN05935.jpg','images/event/socialhousing26/YUN05938.jpg',
+      'images/event/socialhousing26/YUN05939.jpg','images/event/socialhousing26/YUN05944.jpg',
+      'images/event/socialhousing26/YUN05947.jpg','images/event/socialhousing26/YUN05950.jpg',
+      'images/event/socialhousing26/YUN05954.jpg','images/event/socialhousing26/YUN05962.jpg',
+      'images/event/socialhousing26/YUN05963.jpg','images/event/socialhousing26/YUN05966.jpg',
+      'images/event/socialhousing26/YUN05968.jpg','images/event/socialhousing26/YUN05973.jpg',
+      'images/event/socialhousing26/YUN05978.jpg','images/event/socialhousing26/YUN05981.jpg',
+      'images/event/socialhousing26/YUN05983.jpg','images/event/socialhousing26/YUN05987.jpg',
+      'images/event/socialhousing26/YUN05989.jpg','images/event/socialhousing26/YUN06000.jpg',
+      'images/event/socialhousing26/YUN06003.jpg','images/event/socialhousing26/YUN06006.jpg',
+      'images/event/socialhousing26/YUN06007.jpg','images/event/socialhousing26/YUN06012.jpg',
+      'images/event/socialhousing26/YUN06015.jpg','images/event/socialhousing26/YUN06020.jpg',
+      'images/event/socialhousing26/YUN06022.jpg','images/event/socialhousing26/YUN06026.jpg',
+      'images/event/socialhousing26/YUN06028.jpg','images/event/socialhousing26/YUN06030.jpg',
+      'images/event/socialhousing26/YUN06031.jpg','images/event/socialhousing26/YUN06032.jpg',
+      'images/event/socialhousing26/YUN06033.jpg','images/event/socialhousing26/YUN06039.jpg',
+      'images/event/socialhousing26/YUN06045.jpg','images/event/socialhousing26/YUN06049.jpg',
+      'images/event/socialhousing26/YUN06050.jpg','images/event/socialhousing26/YUN06054.jpg',
+      'images/event/socialhousing26/YUN06058.jpg','images/event/socialhousing26/YUN06061.jpg',
+      'images/event/socialhousing26/YUN06062.jpg','images/event/socialhousing26/YUN06064.jpg',
+      'images/event/socialhousing26/YUN06071.jpg','images/event/socialhousing26/YUN06073.jpg',
+      'images/event/socialhousing26/YUN06075.jpg','images/event/socialhousing26/YUN06076.jpg',
+      'images/event/socialhousing26/YUN06080.jpg','images/event/socialhousing26/YUN06081.jpg',
+      'images/event/socialhousing26/YUN06083.jpg','images/event/socialhousing26/YUN06089.jpg',
+      'images/event/socialhousing26/YUN06091.jpg','images/event/socialhousing26/YUN06092.jpg',
+      'images/event/socialhousing26/YUN06098.jpg','images/event/socialhousing26/YUN06105.jpg',
+      'images/event/socialhousing26/YUN06107.jpg','images/event/socialhousing26/YUN06110.jpg',
+      'images/event/socialhousing26/YUN06114.jpg','images/event/socialhousing26/YUN06118.jpg',
+      'images/event/socialhousing26/YUN06123.jpg','images/event/socialhousing26/YUN06126.jpg',
+      'images/event/socialhousing26/YUN06130.jpg','images/event/socialhousing26/YUN06139.jpg',
+      'images/event/socialhousing26/YUN06146.jpg','images/event/socialhousing26/YUN06147.jpg',
+      'images/event/socialhousing26/YUN06153.jpg','images/event/socialhousing26/YUN06156.jpg',
+      'images/event/socialhousing26/YUN06158.jpg','images/event/socialhousing26/YUN06162.jpg',
+      'images/event/socialhousing26/YUN06165.jpg','images/event/socialhousing26/YUN06166.jpg',
+      'images/event/socialhousing26/YUN06168.jpg','images/event/socialhousing26/YUN06173.jpg',
+      'images/event/socialhousing26/YUN06185.jpg','images/event/socialhousing26/YUN06187.jpg',
+      'images/event/socialhousing26/YUN06192.jpg','images/event/socialhousing26/YUN06194.jpg',
+      'images/event/socialhousing26/YUN06197.jpg','images/event/socialhousing26/YUN06205.jpg',
+      'images/event/socialhousing26/YUN06208.jpg','images/event/socialhousing26/YUN06216.jpg',
+      'images/event/socialhousing26/YUN06218.jpg','images/event/socialhousing26/YUN06220.jpg',
+      'images/event/socialhousing26/YUN06231.jpg','images/event/socialhousing26/YUN06233.jpg',
+      'images/event/socialhousing26/YUN06240.jpg','images/event/socialhousing26/YUN06241.jpg',
+      'images/event/socialhousing26/YUN06243.jpg','images/event/socialhousing26/YUN06245.jpg',
+      'images/event/socialhousing26/YUN06248.jpg','images/event/socialhousing26/YUN06250.jpg',
+      'images/event/socialhousing26/YUN06252.jpg','images/event/socialhousing26/YUN06258.jpg',
+      'images/event/socialhousing26/YUN06264.jpg','images/event/socialhousing26/YUN06267.jpg',
+      'images/event/socialhousing26/YUN06269.jpg','images/event/socialhousing26/YUN06275.jpg',
+      'images/event/socialhousing26/YUN06277.jpg','images/event/socialhousing26/YUN06278.jpg',
+      'images/event/socialhousing26/YUN06279.jpg','images/event/socialhousing26/YUN06280.jpg',
+      'images/event/socialhousing26/YUN06282.jpg','images/event/socialhousing26/YUN06283.jpg',
+      'images/event/socialhousing26/YUN06287.jpg','images/event/socialhousing26/YUN06289.jpg',
+      'images/event/socialhousing26/YUN06291.jpg',
+    ]
+    const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lb-img'),lbCtr=document.getElementById('lb-counter');let idx=0
+    function lbOpen(i){idx=i;lbImg.src=PHOTOS[idx];lbCtr.textContent=`${idx+1} / ${PHOTOS.length}`;lb.classList.add('open');document.body.style.overflow='hidden'}
+    function lbClose(){lb.classList.remove('open');document.body.style.overflow=''}
+    function lbStep(d){idx=(idx+d+PHOTOS.length)%PHOTOS.length;lbImg.src=PHOTOS[idx];lbCtr.textContent=`${idx+1} / ${PHOTOS.length}`}
+    document.querySelectorAll('.grid-photo').forEach(img=>img.addEventListener('click',()=>lbOpen(parseInt(img.dataset.index))))
+    document.querySelector('.lb-close').addEventListener('click',lbClose)
+    document.querySelector('.lb-prev').addEventListener('click',e=>{e.stopPropagation();lbStep(-1)})
+    document.querySelector('.lb-next').addEventListener('click',e=>{e.stopPropagation();lbStep(1)})
+    lb.addEventListener('click',e=>{if(e.target===lb)lbClose()})
+    document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')lbClose();if(e.key==='ArrowLeft')lbStep(-1);if(e.key==='ArrowRight')lbStep(1)})
+  </script>
+</body>
+</html>
