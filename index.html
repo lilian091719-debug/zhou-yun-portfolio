@@ -9,7 +9,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #F8F5F0;
+      --bg:      #F6ECEA;
       --bg-alt:  #F0EDE8;
       --dark:    #1A2620;
       --dark2:   #141E1B;
@@ -383,6 +383,10 @@
       margin-bottom: 48px; line-height: 1.7;
     }
     .cta-btns { display: flex; gap: 16px; justify-content: center; }
+    .cta-contact { margin-top: 44px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .cta-contact p { font-size: 13px; letter-spacing: 0.1em; color: rgba(232,228,220,0.6); }
+    .cta-contact a { color: rgba(232,228,220,0.85); text-decoration: none; border-bottom: 1px solid rgba(139,165,179,0.4); transition: color 0.2s, border-color 0.2s; word-break: break-all; }
+    .cta-contact a:hover { color: var(--cream); border-color: var(--morandi); }
 
     /* ── FOOTER ── */
     #footer {
@@ -703,6 +707,9 @@
     <div class="cta-btns">
       <a class="btn btn-fill" href="mailto:lilian091719@gmail.com">寫信給我</a>
       <a class="btn btn-out" href="https://www.instagram.com/our_memories_studio" target="_blank">Instagram</a>
+    </div>
+    <div class="cta-contact">
+      <p>📩 Email：<a href="mailto:lilian091719@gmail.com">lilian091719@gmail.com</a></p>
     </div>
   </section>
 
