@@ -428,10 +428,27 @@
       color: rgba(232,228,220,0.35);
     }
 
+    /* ── NAV TOGGLE (mobile hamburger) ── */
+    .nav-toggle { display: none; background: none; border: none; width: 40px; height: 40px; cursor: pointer; position: relative; flex-shrink: 0; }
+    .nav-toggle span { position: absolute; left: 10px; right: 10px; height: 1px; background: var(--cream); transition: transform 0.25s, opacity 0.25s; }
+    .nav-toggle span:nth-child(1) { top: 14px; }
+    .nav-toggle span:nth-child(2) { top: 20px; }
+    .nav-toggle span:nth-child(3) { top: 26px; }
+    #nav.menu-open .nav-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    #nav.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
+    #nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
     /* ── MOBILE ── */
     @media (max-width: 900px) {
       #nav { padding: 0 24px; }
-      .nav-menu { display: none; }
+      .nav-toggle { display: block; }
+      .nav-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; max-height: calc(100vh - 64px); overflow-y: auto; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0 20px; background: var(--dark2); border-bottom: 1px solid rgba(139,165,179,0.12); z-index: 499; }
+      #nav.menu-open .nav-menu { display: flex; }
+      .nav-item > a { padding: 14px 24px; font-size: 14px; }
+      .has-drop > a::after { content: ''; }
+      .nav-dropdown { position: static; transform: none; opacity: 1; visibility: visible; background: none; border: none; padding: 0 0 6px; min-width: 0; }
+      .has-drop:hover .nav-dropdown { transform: none; }
+      .nav-dropdown a { padding: 9px 40px; font-size: 13px; }
       #story, #cta { padding: 80px 28px; }
       #services { padding: 80px 28px; }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -453,6 +470,7 @@
       <span class="nav-logo-zh">周筠</span>
       <span class="nav-logo-en">YUN</span>
     </a>
+    <button class="nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul class="nav-menu">
       <li class="nav-item has-drop">
         <a href="#s-baby">抓周攝影</a>
@@ -552,7 +570,7 @@
           <div class="sc-sub">展演 · 日常練習</div>
         </div>
       </a>
-      <a class="service-card" href="#s-portrait">
+      <a class="service-card" href="portrait.html">
         <div class="sc-bg" style="background-image:url('images/portrait_05.jpg')"></div>
         <div class="sc-overlay">
           <div class="sc-title">人物形象</div>
@@ -588,7 +606,7 @@
         </ul>
         <a class="btn-ghost" href="baby.html">查看更多照片</a>
       </div>
-      <div class="work-right" data-link="baby.html">
+      <div class="work-right" data-link="baby.html" style="cursor:pointer">
         <img class="work-photo" alt="抓周攝影">
         <img class="work-photo" alt="抓周攝影">
         <img class="work-photo" alt="抓周攝影">
@@ -612,7 +630,7 @@
         </ul>
         <a class="btn-ghost" href="event.html">查看更多照片</a>
       </div>
-      <div class="work-right" data-link="event.html">
+      <div class="work-right" data-link="event.html" style="cursor:pointer">
         <img class="work-photo" alt="活動紀錄">
         <img class="work-photo" alt="活動紀錄">
         <img class="work-photo" alt="活動紀錄">
@@ -644,7 +662,7 @@
         </ul>
         <a class="btn-ghost" href="portrait.html">查看更多照片</a>
       </div>
-      <div class="work-right">
+      <div class="work-right" data-link="portrait.html" style="cursor:pointer">
         <img class="work-photo" alt="人物形象">
         <img class="work-photo" alt="人物形象">
         <img class="work-photo" alt="人物形象">
@@ -665,7 +683,7 @@
           <li>居家溫馨生活紀錄（到府拍攝）</li>
           <li>戶外自然跑跳紀實</li>
         </ul>
-        <button class="btn-ghost">查看更多照片</button>
+        <a class="btn-ghost" href="index.html#s-pet">查看更多照片</a>
       </div>
       <div class="work-right">
         <img class="work-photo" alt="寵物寫真">
@@ -833,6 +851,17 @@
       if (e.key === 'ArrowLeft') lbStep(-1)
       if (e.key === 'ArrowRight') lbStep(1)
     })
+
+    // 手機選單開關
+    const toggle = document.querySelector('.nav-toggle')
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('menu-open')
+      toggle.setAttribute('aria-expanded', open)
+    })
+    document.querySelectorAll('.nav-menu a').forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('menu-open')
+      toggle.setAttribute('aria-expanded', 'false')
+    }))
 
     // 漸顯文字
     const revealObs = new IntersectionObserver(entries => {
