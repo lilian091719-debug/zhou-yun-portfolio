@@ -296,7 +296,10 @@
       font-size: 12px; letter-spacing: 0.08em; color: var(--muted);
       padding: 7px 0; border-bottom: 1px solid var(--border);
     }
-    .work-subs li::before { content: '— '; color: var(--morandi); }
+    .work-subs li::before { content: none; }
+    .work-subs li a { color: inherit; text-decoration: none; display: block; cursor: pointer; }
+    .work-subs li a::before { content: '— '; color: var(--morandi); }
+    .work-subs li a:hover { color: var(--dark); }
     .btn-ghost {
       display: inline-block; padding: 10px 26px;
       font-size: 11px; letter-spacing: 0.16em;
@@ -496,7 +499,7 @@
         </ul>
       </li>
       <li class="nav-item has-drop">
-        <a href="#s-pet">寵物寫真</a>
+        <a href="pet.html">寵物寫真</a>
         <ul class="nav-dropdown">
           <li><a href="pet.html?cat=棚拍精緻光影寫真">棚拍精緻光影寫真</a></li>
           <li><a href="pet.html?cat=居家溫馨生活紀錄（到府）">居家溫馨生活紀錄（到府）</a></li>
@@ -577,7 +580,7 @@
           <div class="sc-sub">商務 · 品牌 · 藝術表演</div>
         </div>
       </a>
-      <a class="service-card" href="#s-pet">
+      <a class="service-card" href="pet.html">
         <div class="sc-bg" style="background-image:url('images/pet_01.jpg')"></div>
         <div class="sc-overlay">
           <div class="sc-title">寵物寫真</div>
@@ -656,9 +659,9 @@
         <h2 class="work-title">人物形象</h2>
         <p class="work-story">「你有故事，我有鏡頭。剩下的，我們一起想。」</p>
         <ul class="work-subs">
-          <li>商務與專業形象</li>
-          <li>個人品牌與自媒體形象</li>
-          <li>藝術與表演者形象</li>
+          <li><a href="portrait.html?cat=商務與專業形象">商務與專業形象</a></li>
+          <li><a href="portrait.html?cat=個人品牌與自媒體形象">個人品牌與自媒體形象</a></li>
+          <li><a href="portrait.html?cat=藝術與表演者形象">藝術與表演者形象</a></li>
         </ul>
         <a class="btn-ghost" href="portrait.html">查看更多照片</a>
       </div>
